@@ -1,4 +1,4 @@
-package com.uniovi.InciDashboard_e4a.entities.location;
+package com.uniovi.InciDashboard_e4a.entities;
 
 import utils.Assert;
 
