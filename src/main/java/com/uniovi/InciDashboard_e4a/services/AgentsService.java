@@ -13,4 +13,8 @@ public class AgentsService {
 	public void addAgent(Agent agent) {
 		this.agentsRepository.save(agent);
 	}
+
+	public Agent findAgentByUsername(String string) {
+		return agentsRepository.findByUsername(string);
+	}
 }
