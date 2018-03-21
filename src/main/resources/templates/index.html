@@ -16,7 +16,7 @@
 				<div class="panel panel-headline">
 					<div class="panel-heading">
 						<h3 class="panel-title">Dashboard</h3>
-						<p class="panel-subtitle">Nombre del usuario</p>
+						<p class="panel-subtitle" th:text="${agent.username}">Nombre del usuario</p>
 					</div>
 					<div class="panel-body">
 						<div class="row">
@@ -24,7 +24,7 @@
 								<div class="metric">
 									<span class="icon"><i class="fa fa-check-circle"></i></span>
 									<p>
-										<span class="number">12</span>
+										<span class="number" th:text="${agent.getIncOPEN().size()}">12</span>
 										<span class="title">Open</span>
 									</p>
 								</div>
@@ -33,7 +33,7 @@
 								<div class="metric">
 									<span class="icon"><i class="fa fa-spinner"></i></span>
 									<p>
-										<span class="number">20</span>
+										<span class="number" th:text="${agent.getIncProg().size()}">20</span>
 										<span class="title">In process</span>
 									</p>
 								</div>
@@ -42,7 +42,7 @@
 								<div class="metric">
 									<span class="icon"><i class="fa fa-times-circle"></i></span>
 									<p>
-										<span class="number">27</span>
+										<span class="number" th:text="${agent.getIncCLOSED().size()}">27</span>
 										<span class="title">Closed</span>
 									</p>
 								</div>
@@ -51,7 +51,7 @@
 								<div class="metric">
 									<span class="icon"><i class="fa fa-ban"></i></span>
 									<p>
-										<span class="number">35</span>
+										<span class="number" th:text="${agent.getIncCANCEL().size()}">35</span>
 										<span class="title">Cancelled</span>
 									</p>
 								</div>
@@ -104,7 +104,8 @@
 <script src="assets/vendor/chartist/js/chartist.min.js"></script>
 <script src="assets/scripts/klorofil-common.js"></script>
 
-<script>
+<script th:inline="javascript">
+	/*<![CDATA[*/
 	$(function() {
 		var data, options;
 
@@ -112,7 +113,12 @@
 		data = {
 			labels: ['Open', 'In process', 'Closed', 'Cancelled'],
 			series: [
-				[12, 20, 27, 35]
+				[
+					[[${agent.getIncOPEN().size()}]],
+					[[${agent.getIncProg().size()}]],
+					[[${agent.getIncCLOSED().size()}]],
+					[[${agent.getIncCANCEL().size()}]]
+				]
 			]
 		};
 
@@ -130,7 +136,8 @@
 
 		new Chartist.Line('#headline-chart', data, options);
 	});
-	</script>
+	/*]]>*/
+</script>
 </body>
 
 </html>
