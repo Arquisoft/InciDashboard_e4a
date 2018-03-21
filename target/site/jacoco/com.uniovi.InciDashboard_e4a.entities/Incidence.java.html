@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Incidence.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">InciDashboard_e4a</a> &gt; <a href="index.source.html" class="el_package">com.uniovi.InciDashboard_e4a.entities</a> &gt; <span class="el_source">Incidence.java</span></div><h1>Incidence.java</h1><pre class="source lang-java linenums">package com.uniovi.InciDashboard_e4a.entities;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Convert;
+import javax.persistence.ElementCollection;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.uniovi.InciDashboard_e4a.json.Deserializer;
+import com.uniovi.InciDashboard_e4a.json.Serializer;
+
+import utils.IncidentProperties2Json;
+
+@JsonDeserialize(using = Deserializer.class)
+@JsonSerialize(using = Serializer.class)
+@Entity
+public class Incidence {
+
+	@Id
+	@GeneratedValue
+	private Long id;
+	
+	private String inciName;
+	private LatLong location;
+
+	@ManyToOne(cascade = CascadeType.MERGE)
+	@JoinColumn(name = &quot;agent_id&quot;)
+	private Agent agent;
+
+<span class="pc" id="L46">	@ElementCollection(targetClass = String.class, fetch = FetchType.EAGER)</span>
+	private Set&lt;String&gt; tags = new HashSet&lt;String&gt;();
+
+<span class="pc" id="L49">	@ElementCollection(targetClass = String.class, fetch = FetchType.EAGER)</span>
+	private List&lt;String&gt; moreInfo = new ArrayList&lt;String&gt;();
+
+<span class="pc" id="L52">	@Convert(converter = IncidentProperties2Json.class)</span>
+	private Map&lt;String, Object&gt; properties = new HashMap&lt;String, Object&gt;();
+
+	@Enumerated(EnumType.STRING)
+	private State state;
+
+<span class="fc" id="L58">	public Incidence() {</span>
+<span class="fc" id="L59">	}</span>
+
+<span class="nc" id="L61">	public Incidence(String name, LatLong location) {</span>
+<span class="nc bnc" id="L62" title="All 4 branches missed.">		if (name.equals(&quot;&quot;) || location == null)</span>
+<span class="nc" id="L63">			throw new IllegalArgumentException(&quot;Incident fields cannot be empty&quot;);</span>
+
+<span class="nc" id="L65">		this.inciName = name;</span>
+<span class="nc" id="L66">		this.location = location;</span>
+<span class="nc" id="L67">	}</span>
+
+	public Incidence(String name, LatLong latLng, Agent agent) {
+<span class="nc" id="L70">		this(name, latLng);</span>
+<span class="nc" id="L71">		this.setAgent(agent);</span>
+<span class="nc" id="L72">	}</span>
+
+	public void addMoreInfo(String info) {
+<span class="nc" id="L75">		this.moreInfo.add(info);</span>
+<span class="nc" id="L76">	}</span>
+
+	public void addProperty(String property, Object value) {
+<span class="nc" id="L79">		this.properties.put(property, value);</span>
+<span class="nc" id="L80">	}</span>
+
+	public Map&lt;String, Object&gt; getProperties() {
+<span class="nc" id="L83">		return properties;</span>
+	}
+
+	public void setProperties(Map&lt;String, Object&gt; properties) {
+<span class="nc" id="L87">		this.properties = properties;</span>
+<span class="nc" id="L88">	}</span>
+
+	public void setInciName(String inciName) {
+<span class="nc" id="L91">		this.inciName = inciName;</span>
+<span class="nc" id="L92">	}</span>
+
+	public void setLocation(LatLong location) {
+<span class="nc" id="L95">		this.location = location;</span>
+<span class="nc" id="L96">	}</span>
+
+	public Long getId() {
+<span class="nc" id="L99">		return id;</span>
+	}
+
+	public String getInciName() {
+<span class="nc" id="L103">		return inciName;</span>
+	}
+
+	public LatLong getLocation() {
+<span class="nc" id="L107">		return location;</span>
+	}
+
+	public Set&lt;String&gt; getTags() {
+<span class="nc" id="L111">		return tags;</span>
+	}
+
+	public List&lt;String&gt; getMoreInfo() {
+<span class="nc" id="L115">		return moreInfo;</span>
+	}
+
+	public State getState() {
+<span class="nc" id="L119">		return state;</span>
+	}
+
+	public void setState(State state) {
+<span class="nc" id="L123">		this.state = state;</span>
+<span class="nc" id="L124">	}</span>
+
+	public Agent getAgent() {
+<span class="nc" id="L127">		return agent;</span>
+	}
+
+	public void setAgent(Agent agent) {
+<span class="nc" id="L131">		this.agent = agent;</span>
+<span class="nc" id="L132">	}</span>
+
+	@Override
+	public int hashCode() {
+<span class="nc" id="L136">		final int prime = 31;</span>
+<span class="nc" id="L137">		int result = 1;</span>
+<span class="nc bnc" id="L138" title="All 2 branches missed.">		result = prime * result + ((id == null) ? 0 : id.hashCode());</span>
+<span class="nc bnc" id="L139" title="All 2 branches missed.">		result = prime * result + ((inciName == null) ? 0 : inciName.hashCode());</span>
+<span class="nc bnc" id="L140" title="All 2 branches missed.">		result = prime * result + ((location == null) ? 0 : location.hashCode());</span>
+<span class="nc" id="L141">		return result;</span>
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+<span class="nc bnc" id="L146" title="All 2 branches missed.">		if (this == obj)</span>
+<span class="nc" id="L147">			return true;</span>
+<span class="nc bnc" id="L148" title="All 2 branches missed.">		if (obj == null)</span>
+<span class="nc" id="L149">			return false;</span>
+<span class="nc bnc" id="L150" title="All 2 branches missed.">		if (getClass() != obj.getClass())</span>
+<span class="nc" id="L151">			return false;</span>
+
+<span class="nc" id="L153">		Incidence other = (Incidence) obj;</span>
+<span class="nc bnc" id="L154" title="All 2 branches missed.">		if (id == null) {</span>
+<span class="nc bnc" id="L155" title="All 2 branches missed.">			if (other.id != null)</span>
+<span class="nc" id="L156">				return false;</span>
+<span class="nc bnc" id="L157" title="All 2 branches missed.">		} else if (!id.equals(other.id))</span>
+<span class="nc" id="L158">			return false;</span>
+<span class="nc" id="L159">		return true;</span>
+	}
+
+	@Override
+	public String toString() {
+<span class="nc" id="L164">		StringBuilder builder = new StringBuilder();</span>
+<span class="nc" id="L165">		builder.append(&quot;Incidence [id=&quot;).append(id).append(&quot;, inciName=&quot;).append(inciName).append(&quot;, location=&quot;)</span>
+<span class="nc" id="L166">				.append(location).append(&quot;, tags=&quot;).append(tags).append(&quot;, moreInfo=&quot;).append(moreInfo)</span>
+<span class="nc" id="L167">				.append(&quot;, properties=&quot;).append(properties).append(&quot;]&quot;);</span>
+<span class="nc" id="L168">		return builder.toString();</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>
