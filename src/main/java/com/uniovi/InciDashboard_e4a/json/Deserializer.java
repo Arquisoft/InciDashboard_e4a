@@ -13,7 +13,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.uniovi.InciDashboard_e4a.entities.Agent;
 import com.uniovi.InciDashboard_e4a.entities.Incidence;
-import com.uniovi.InciDashboard_e4a.entities.location.LatLong;;
+import com.uniovi.InciDashboard_e4a.entities.LatLong;;
 
 public class Deserializer extends JsonDeserializer<Incidence> {
 	@SuppressWarnings("unchecked")

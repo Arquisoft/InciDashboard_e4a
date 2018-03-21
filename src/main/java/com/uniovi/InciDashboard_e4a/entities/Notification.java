@@ -1,5 +1,6 @@
 package com.uniovi.InciDashboard_e4a.entities;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;

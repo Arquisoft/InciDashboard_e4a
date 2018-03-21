@@ -10,6 +10,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Convert;
 import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
@@ -18,11 +19,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import org.springframework.boot.autoconfigure.domain.EntityScan;
-
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.uniovi.InciDashboard_e4a.entities.location.LatLong;
 import com.uniovi.InciDashboard_e4a.json.Deserializer;
 import com.uniovi.InciDashboard_e4a.json.Serializer;
 
@@ -30,7 +28,6 @@ import utils.IncidentProperties2Json;
 
 @JsonDeserialize(using = Deserializer.class)
 @JsonSerialize(using = Serializer.class)
-@EntityScan
 public class Incidence {
 
 	@Id
