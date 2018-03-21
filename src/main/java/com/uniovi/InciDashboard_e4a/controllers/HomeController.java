@@ -34,7 +34,6 @@ public class HomeController {
 	public String list(Model model) {
 		List<Incidence> incidencias = incidencesService.getAllIncidents();
 		
-		
 		model.addAttribute("allIncidences" , incidencias); 
 		return "/incidence_list";
 	}

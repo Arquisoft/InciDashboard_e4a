@@ -12,7 +12,73 @@
 		<div class="main-content">
 			<div class="container-fluid">
 			
-				<!-- Aqui va el contenido -->
+				<!-- GENERAL -->
+				<div class="panel panel-headline">
+					<div class="panel-heading">
+						<h3 class="panel-title">Dashboard</h3>
+						<p class="panel-subtitle">Nombre del usuario</p>
+					</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-md-3">
+								<div class="metric">
+									<span class="icon"><i class="fa fa-check-circle"></i></span>
+									<p>
+										<span class="number">12</span>
+										<span class="title">Open</span>
+									</p>
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="metric">
+									<span class="icon"><i class="fa fa-spinner"></i></span>
+									<p>
+										<span class="number">20</span>
+										<span class="title">In process</span>
+									</p>
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="metric">
+									<span class="icon"><i class="fa fa-times-circle"></i></span>
+									<p>
+										<span class="number">27</span>
+										<span class="title">Closed</span>
+									</p>
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="metric">
+									<span class="icon"><i class="fa fa-ban"></i></span>
+									<p>
+										<span class="number">35</span>
+										<span class="title">Cancelled</span>
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-9">
+								<div id="headline-chart" class="ct-chart"></div>
+							</div>
+							<div class="col-md-3">
+								<div class="weekly-summary text-right">
+									<span class="number">60</span> <span class="percentage"><i class="fa fa-caret-up text-success"></i> 12%</span>
+									<span class="info-label">Incidencias producidas</span>
+								</div>
+								<div class="weekly-summary text-right">
+									<span class="number">27</span> <span class="percentage"><i class="fa fa-caret-up text-success"></i> 23%</span>
+									<span class="info-label">Incidencias cerradas</span>
+								</div>
+								<div class="weekly-summary text-right">
+									<span class="number">35</span> <span class="percentage"><i class="fa fa-caret-down text-danger"></i> 8%</span>
+									<span class="info-label">Incidencias canceladas</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- END OVERVIEW -->
 				
 			</div>
 		</div>
@@ -38,6 +104,33 @@
 <script src="assets/vendor/chartist/js/chartist.min.js"></script>
 <script src="assets/scripts/klorofil-common.js"></script>
 
+<script>
+	$(function() {
+		var data, options;
+
+		// headline charts
+		data = {
+			labels: ['Open', 'In process', 'Closed', 'Cancelled'],
+			series: [
+				[12, 20, 27, 35]
+			]
+		};
+
+		options = {
+			height: 300,
+			showArea: true,
+			showLine: false,
+			showPoint: false,
+			fullWidth: true,
+			axisX: {
+				showGrid: false
+			},
+			lineSmooth: false,
+		};
+
+		new Chartist.Line('#headline-chart', data, options);
+	});
+	</script>
 </body>
 
 </html>
