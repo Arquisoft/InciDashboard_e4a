@@ -10,6 +10,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Convert;
 import javax.persistence.ElementCollection;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -28,12 +29,13 @@ import utils.IncidentProperties2Json;
 
 @JsonDeserialize(using = Deserializer.class)
 @JsonSerialize(using = Serializer.class)
+@Entity
 public class Incidence {
 
 	@Id
 	@GeneratedValue
 	private Long id;
-
+	
 	private String inciName;
 	private LatLong location;
 
