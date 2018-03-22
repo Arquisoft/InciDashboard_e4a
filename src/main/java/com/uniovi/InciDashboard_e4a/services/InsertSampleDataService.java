@@ -71,7 +71,7 @@ public class InsertSampleDataService {
 		incidencia8.setState(State.CLOSED);
 		Incidence incidencia9 = new Incidence("Prueba9", new LatLong("12.459789,", "-6.070053"), agente4); 
 		incidencia9.setState(State.IN_PROCESS);
-		Incidence incidencia10 = new Incidence("Prueba10", latlong10, agente3); 
+		Incidence incidencia10 = new Incidence("Prueba10", new LatLong("12.459789,", "-6.070053"), agente3); 
 		Map<String, Object> camposExtra = new HashMap<String, Object>(); 
 		camposExtra.put("hola", "que tal");
 		camposExtra.put("yo bien", "y tu");
