@@ -16,7 +16,7 @@
 				<div class="panel panel-headline">
 					<div class="panel-heading">
 						<h3 class="panel-title">Dashboard</h3>
-						<p class="panel-subtitle" th:text="${agent.username}">Nombre del usuario</p>
+						<p class="panel-subtitle" th:text="${operator.operatorname}">Nombre del usuario</p>
 					</div>
 					<div class="panel-body">
 						<div class="row">
@@ -24,7 +24,7 @@
 								<div class="metric">
 									<span class="icon"><i class="fa fa-check-circle"></i></span>
 									<p>
-										<span class="number" th:text="${agent.getIncOPEN().size()}">12</span>
+										<span class="number" th:text="${operator.getIncOPEN().size()}">12</span>
 										<span class="title">Open</span>
 									</p>
 								</div>
@@ -33,7 +33,7 @@
 								<div class="metric">
 									<span class="icon"><i class="fa fa-spinner"></i></span>
 									<p>
-										<span class="number" th:text="${agent.getIncProg().size()}">20</span>
+										<span class="number" th:text="${operator.getIncProg().size()}">20</span>
 										<span class="title">In process</span>
 									</p>
 								</div>
@@ -42,7 +42,7 @@
 								<div class="metric">
 									<span class="icon"><i class="fa fa-times-circle"></i></span>
 									<p>
-										<span class="number" th:text="${agent.getIncCLOSED().size()}">27</span>
+										<span class="number" th:text="${operator.getIncCLOSED().size()}">27</span>
 										<span class="title">Closed</span>
 									</p>
 								</div>
@@ -51,7 +51,7 @@
 								<div class="metric">
 									<span class="icon"><i class="fa fa-ban"></i></span>
 									<p>
-										<span class="number" th:text="${agent.getIncCANCEL().size()}">35</span>
+										<span class="number" th:text="${operator.getIncCANCEL().size()}">35</span>
 										<span class="title">Cancelled</span>
 									</p>
 								</div>
@@ -79,6 +79,60 @@
 					</div>
 				</div>
 				<!-- END OVERVIEW -->
+				
+				<!-- Lista de notificaciones -->
+				<div class="row">
+					<div class="col-md-12">
+						<!-- NOTIFICACIONES -->
+						<div class="panel">
+							<div class="panel-heading">
+								<h3 class="panel-title">Notificaciones de incidencias</h3>
+								<div class="right">
+									<button type="button" class="btn-toggle-collapse"><i class="lnr lnr-chevron-up"></i></button>
+									<button type="button" class="btn-remove"><i class="lnr lnr-cross"></i></button>
+								</div>
+							</div>
+							<div class="panel-body no-padding">
+								<table class="table table-striped">
+									<thead>
+										<tr>
+											<th>Inci Name</th>
+											<th>Desc</th>
+											<th>Agent</th>
+											<th>Tags</th>
+											<th>Status</th>
+											<th>Edit status</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="noti : ${nots}">
+											<td><a href="#" th:text="${noti.incidencia.inciName}">763648</a></td>
+											<td th:text="${noti.description}">Steve</td>
+											<td th:text="${noti.incidencia.agent.username}">$122</td>
+											<td th:text="${noti.tagList()}">Oct 21, 2016</td>
+											<td th:if="${noti.incidencia.isOpen()}"><span class="label label-success">OPEN</span></td>
+											<td th:if="${noti.incidencia.isInProg()}"><span class="label label-info">In Process</span></td>
+											<td th:if="${noti.incidencia.isClosed()}"><span class="label label-default">Closed</span></td>
+											<td th:if="${noti.incidencia.isCancelled()}"><span class="label label-danger">Cancelled</span></td>
+											
+											<td th:if="${noti.incidencia.isOpen()}"></td>
+											<td th:if="${noti.incidencia.isInProg()}"><button type="button" class="btn btn-success"> Close</button></td>
+											<td th:if="${noti.incidencia.isClosed()}"><button type="button" class="btn btn-info"> ReOpen</button></td>
+											<td th:if="${noti.incidencia.isCancelled()}"></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<div class="panel-footer">
+								<div class="row">
+									<div class="col-md-6"><span class="panel-note"><i class="fa fa-clock-o"></i> Notificaciones</span></div>
+									<div class="col-md-6 text-right"><a href="#" class="btn btn-primary">Ver todas las incidencias</a></div>
+								</div>
+							</div>
+						</div>
+						<!-- END RECENT PURCHASES -->
+					</div>
+				</div>
 				
 			</div>
 		</div>
@@ -114,10 +168,10 @@
 			labels: ['Open', 'In process', 'Closed', 'Cancelled'],
 			series: [
 				[
-					[[${agent.getIncOPEN().size()}]],
-					[[${agent.getIncProg().size()}]],
-					[[${agent.getIncCLOSED().size()}]],
-					[[${agent.getIncCANCEL().size()}]]
+					[[${operator.getIncOPEN().size()}]],
+					[[${operator.getIncProg().size()}]],
+					[[${operator.getIncCLOSED().size()}]],
+					[[${operator.getIncCANCEL().size()}]]
 				]
 			]
 		};

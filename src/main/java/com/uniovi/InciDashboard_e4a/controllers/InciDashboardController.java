@@ -6,7 +6,6 @@ import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,10 +13,12 @@ import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter.SseEventBuilder;
 
 import com.uniovi.InciDashboard_e4a.entities.Incidence;
+import com.uniovi.InciDashboard_e4a.entities.State;
 import com.uniovi.InciDashboard_e4a.services.AgentsService;
 import com.uniovi.InciDashboard_e4a.services.IncidencesService;
 
 import mocks.IncidenceGenerator;
+import utils.Incidence2Pojo;
 
 @Controller
 public class InciDashboardController {
@@ -58,10 +59,11 @@ public class InciDashboardController {
 		IncidenceGenerator incidenceGenerator = new IncidenceGenerator();
 		incidenceGenerator.setPossibleAgents(agentsService.findAll());
 		Incidence incidence = incidenceGenerator.generateRandomIncident();
-		SseEventBuilder event = SseEmitter.event().name("newIncidence").data(incidence);
-		sendData(event);
-		
-		return "/login";
+		incidence.setState(State.IN_PROCESS);
+		Incidence i2 = incidenceService.addIncidence(incidence);
+		SseEventBuilder event = SseEmitter.event().name("newIncidence").data(Incidence2Pojo.convert(i2));
+		sendData(event);		
+		return "/login/login";
 	}
 	void sendData(SseEventBuilder event) {
 		synchronized (this.emitters) {

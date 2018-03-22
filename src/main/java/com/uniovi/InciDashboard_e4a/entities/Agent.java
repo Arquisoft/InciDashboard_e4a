@@ -13,20 +13,22 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class Agent {
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
+
 	private String username;
 	private String password;
 	private String kind;
-	
-	public Agent() {}
-	
+	private String role;
+
+	public Agent() {
+	}
+
 	@OneToMany
 	private Set<Incidence> incidencias = new HashSet<Incidence>();
-	
+
 	public Agent(String username, String password, String kind) {
 		this.username = username;
 		this.password = password;
@@ -65,6 +67,22 @@ public class Agent {
 		this.id = id;
 	}
 
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	public Set<Incidence> getIncidencias() {
+		return incidencias;
+	}
+
+	public void setIncidencias(Set<Incidence> incidencias) {
+		this.incidencias = incidencias;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -97,26 +115,29 @@ public class Agent {
 
 	@Override
 	public String toString() {
-		return "Agent [id=" + id + ", username=" + username + ", password=" + password + ", kind=" + kind + "]";
+		return username + "kind: " + kind;
 	}
 
 	public void addIncidence(Incidence incidence) {
 		this.incidencias.add(incidence);
 	}
-	
+
 	public List<Incidence> getIncByState(State s) {
 		return this.incidencias.stream().filter(x -> x.getState().equals(s)).collect(Collectors.toList());
 	}
-	
+
 	public List<Incidence> getIncOPEN() {
 		return this.getIncByState(State.OPEN);
 	}
+
 	public List<Incidence> getIncProg() {
 		return this.getIncByState(State.IN_PROCESS);
 	}
+
 	public List<Incidence> getIncCLOSED() {
 		return this.getIncByState(State.CLOSED);
 	}
+
 	public List<Incidence> getIncCANCEL() {
 		return this.getIncByState(State.CANCELLED);
 	}

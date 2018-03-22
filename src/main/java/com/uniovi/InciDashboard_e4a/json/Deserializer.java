@@ -13,7 +13,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.uniovi.InciDashboard_e4a.entities.Agent;
 import com.uniovi.InciDashboard_e4a.entities.Incidence;
-import com.uniovi.InciDashboard_e4a.entities.Location;;
+import com.uniovi.InciDashboard_e4a.entities.LatLong;;
 
 public class Deserializer extends JsonDeserializer<Incidence> {
 	@SuppressWarnings("unchecked")
@@ -27,7 +27,7 @@ public class Deserializer extends JsonDeserializer<Incidence> {
 		incident.setAgent(new Agent(jsonNode.get("agent").get("username").asText(),
 				jsonNode.get("agent").get("password").asText(), jsonNode.get("agent").get("kind").asText()));
 		incident.setInciName(jsonNode.get("inciName").asText());
-		incident.setLocation(new Location(jsonNode.get("location").get("lat").asText(),
+		incident.setLocation(new LatLong(jsonNode.get("location").get("lat").asText(),
 				jsonNode.get("location").get("lon").asText()));
 
 		Iterator<JsonNode> tagsIter = jsonNode.get("tags").elements();

@@ -18,6 +18,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -34,9 +35,9 @@ public class Incidence {
 	@Id
 	@GeneratedValue
 	private Long id;
-	
+
 	private String inciName;
-	private Location location;
+	private LatLong location;
 
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "agent_id")
@@ -54,10 +55,13 @@ public class Incidence {
 	@Enumerated(EnumType.STRING)
 	private State state;
 
+	@OneToOne(mappedBy = "incidencia")
+	private Notification notification;
+
 	public Incidence() {
 	}
 
-	public Incidence(String name, Location location) {
+	public Incidence(String name, LatLong location) {
 		if (name.equals("") || location == null)
 			throw new IllegalArgumentException("Incident fields cannot be empty");
 
@@ -65,7 +69,7 @@ public class Incidence {
 		this.location = location;
 	}
 
-	public Incidence(String name, Location latLng, Agent agent) {
+	public Incidence(String name, LatLong latLng, Agent agent) {
 		this(name, latLng);
 		this.setAgent(agent);
 	}
@@ -90,7 +94,7 @@ public class Incidence {
 		this.inciName = inciName;
 	}
 
-	public void setLocation(Location location) {
+	public void setLocation(LatLong location) {
 		this.location = location;
 	}
 
@@ -102,7 +106,7 @@ public class Incidence {
 		return inciName;
 	}
 
-	public Location getLocation() {
+	public LatLong getLocation() {
 		return location;
 	}
 
@@ -128,6 +132,22 @@ public class Incidence {
 
 	public void setAgent(Agent agent) {
 		this.agent = agent;
+	}
+
+	public Notification getNotification() {
+		return notification;
+	}
+
+	public void setNotification(Notification notification) {
+		this.notification = notification;
+	}
+
+	public void setTags(Set<String> tags) {
+		this.tags = tags;
+	}
+
+	public void setMoreInfo(List<String> moreInfo) {
+		this.moreInfo = moreInfo;
 	}
 
 	@Override
@@ -165,6 +185,34 @@ public class Incidence {
 				.append(location).append(", tags=").append(tags).append(", moreInfo=").append(moreInfo)
 				.append(", properties=").append(properties).append("]");
 		return builder.toString();
+	}
+
+	public void addNot(Notification n1) {
+		this.notification = n1;
+	}
+	
+	public String tagList() {
+		String cadena = "";
+		for (String s : tags) {
+			cadena +=s+",";
+		}
+		return cadena;
+	}
+	
+	public boolean isOpen() {
+		return this.state.equals(State.OPEN);
+	}
+	
+	public boolean isInProg() {
+		return this.state.equals(State.IN_PROCESS);
+	}
+	
+	public boolean isClosed() {
+		return this.state.equals(State.CLOSED);
+	}
+	
+	public boolean isCancelled() {
+		return this.state.equals(State.CANCELLED);
 	}
 
 }

@@ -18,8 +18,8 @@ public class IncidencesService {
 		return incidencesRepository.findAll();
 	}
 
-	public void addIncidence(Incidence incident) {
-		incidencesRepository.save(incident);
+	public Incidence addIncidence(Incidence incident) {
+		return incidencesRepository.save(incident);
 	}
 
 	public void deleteIncidenceByName(String inciName) {

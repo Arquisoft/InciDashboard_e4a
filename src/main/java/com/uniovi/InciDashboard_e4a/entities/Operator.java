@@ -1,7 +1,9 @@
 package com.uniovi.InciDashboard_e4a.entities;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -17,23 +19,25 @@ import javax.persistence.OneToMany;
 public class Operator {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
-	@Column(unique=true)
+
+	@Column(unique = true)
 	private String email;
-	
+	private String password;
+
 	private String operatorname;
 	private int isAdmin;
-	
-	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-    @JoinColumn(name="operator_id")
-	private Set<Notification> notifications = new HashSet<>();
-	
 
-	public Operator() {}
-	
-	
+	private String role;
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "operator_id")
+	private Set<Notification> notifications = new HashSet<>();
+
+	public Operator() {
+	}
+
 	public Operator(Long id, String email, String operatorname, int isAdmin) {
 		super();
 		this.id = id;
@@ -41,8 +45,14 @@ public class Operator {
 		this.operatorname = operatorname;
 		this.isAdmin = isAdmin;
 	}
-
-
+	
+	public Operator(String email,String operatorname,String passwd, int isAdmin) {
+		super();
+		this.password = passwd;
+		this.email = email;
+		this.operatorname = operatorname;
+		this.isAdmin = isAdmin;
+	}
 
 	@Override
 	public int hashCode() {
@@ -52,8 +62,6 @@ public class Operator {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
-
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -77,14 +85,18 @@ public class Operator {
 		return true;
 	}
 
+	public String getRole() {
+		return role;
+	}
 
+	public void setRole(String role) {
+		this.role = role;
+	}
 
 	@Override
 	public String toString() {
 		return "Operator [email=" + email + ", operatorname=" + operatorname + ", isAdmin=" + isAdmin + "]";
 	}
-
-
 
 	public String getEmail() {
 		return email;
@@ -118,4 +130,32 @@ public class Operator {
 		this.notifications = notifications;
 	}
 
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public List<Incidence> getIncByState(State s) {
+		List<Incidence> inc = notifications.stream().map(x -> x.getIncidencia()).collect(Collectors.toList());
+		return inc.stream().filter(x -> x.getState().equals(s)).collect(Collectors.toList());
+	}
+
+	public List<Incidence> getIncOPEN() {
+		return this.getIncByState(State.OPEN);
+	}
+
+	public List<Incidence> getIncProg() {
+		return this.getIncByState(State.IN_PROCESS);
+	}
+
+	public List<Incidence> getIncCLOSED() {
+		return this.getIncByState(State.CLOSED);
+	}
+
+	public List<Incidence> getIncCANCEL() {
+		return this.getIncByState(State.CANCELLED);
+	}
 }

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 import com.uniovi.InciDashboard_e4a.entities.Agent;
 import com.uniovi.InciDashboard_e4a.entities.Incidence;
-import com.uniovi.InciDashboard_e4a.entities.Location;
+import com.uniovi.InciDashboard_e4a.entities.LatLong;
 
 @Component
 public class IncidenceGenerator {
@@ -55,10 +55,10 @@ public class IncidenceGenerator {
 		incident.setProperties(properties);
 	}
 
-	private Location createRandomLocation() {
+	private LatLong createRandomLocation() {
 		Double lat = (generator.nextDouble() - 0.5) * 180;
 		Double lon = (generator.nextDouble() - 0.5) * 360;
-		return new Location(lat.toString(), lon.toString());
+		return new LatLong(lat.toString(), lon.toString());
 	}
 
 	private Agent pickRandomAgent() {

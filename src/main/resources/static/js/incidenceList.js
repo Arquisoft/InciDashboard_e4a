@@ -15,8 +15,8 @@ eventSource.addEventListener("newIncidence", function(event) {
 	
 	enlace.outerHTML = '<th><a href = "'+ obj.id +'">'+ obj.id + '</a></th>';
 	name.outerHTML = '<th>' + obj.inciName + '</th>';
-	location.outerHTML = '<th>'+ obj.location + '</th>';
-	agent.outerHTML = '<th>'+ obj.agent +'</th>';
+	location.outerHTML = '<th>'+ String(obj.location) + '</th>';
+	agent.outerHTML = '<th>'+ String(obj.agent) +'</th>';
 	state.outerHTML = '<th>' + obj.state + '</th>';
 	
 });
