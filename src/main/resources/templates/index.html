@@ -134,6 +134,11 @@
 					</div>
 				</div>
 				
+				<!-- MAPA -->
+				<div class="row">
+					<div class="col-md-12"><div id="map" style="width:800px;height:800px"></div></div>
+				</div>
+				
 			</div>
 		</div>
 		<!-- CONTENIDO -->
@@ -192,6 +197,43 @@
 	});
 	/*]]>*/
 </script>
+<script type="text/javascript" th:inline="javascript">
+/*<![CDATA[*/
+function myMap()
+{
+	var map = new google.maps.Map(document.getElementById('map'), {
+	    zoom: 2,
+	    center: new google.maps.LatLng(43.518197, -5.641936),
+	    mapTypeId: google.maps.MapTypeId.ROADMAP
+	  });
+	 
+	var infowindow = new google.maps.InfoWindow();
+
+	var marker;
+	var i = 0;
+  
+	/*[# th:each="noti : ${nots}"]*/
+	
+	i++;
+	marker = new google.maps.Marker({
+	      position: new google.maps.LatLng(
+	    		  parseInt(/*[[${noti.incidencia.location.latitude}]]*/),
+	    		  parseInt(/*[[${noti.incidencia.location.longitude}]]*/)),
+	      map: map
+	    });
+	console.log(i);
+
+    google.maps.event.addListener(marker, 'click', (function(marker, i) {
+      return function() {
+        infowindow.setContent(/*[[${noti.incidencia.inciName}]]*/);
+        infowindow.open(map, marker);
+      }
+    })(marker, i));
+	/*[/]*/
+}
+  /*]]>*/
+</script> 
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLJQKw9sNiw5jYMR2WdqkKHhWvnNFFx3E &callback=myMap"></script>
 </body>
 
 </html>
