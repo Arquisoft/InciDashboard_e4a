@@ -115,7 +115,7 @@ public class Agent {
 
 	@Override
 	public String toString() {
-		return username + "kind: " + kind;
+		return username + " Kind: " + kind;
 	}
 
 	public void addIncidence(Incidence incidence) {
