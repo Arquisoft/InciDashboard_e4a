@@ -28,5 +28,36 @@ El objetivo de este proyecto es actuar como modulo de Dashboard para un sistema 
 
 ### Ejecucion
 
-	mvn -q exec:java -Dexec.mainClass="main.InciDashboardApplication"
+1. Arrancar HSQLDB
+   * Para ello, acceder a la carpeta data/hsqldb/bin y lanzar el runServer.bat (o runServer.sh en caso de Linux/Mac).
+2. Tener Apache Kafka. 
+   * Instrucciones de instalación y despliegue en https://kafka.apache.org/quickstart.
+2. Arrancar Apache Zookeeper desde directorio de Apache-kafka:
+   * Mac/Linux: ``bin/zookeeper-server-start.sh config/zookeeper.properties``
+   * Windows: ``bin\windows\zookeeper-server-start.bat config\zookeeper.properties``
+3. Arrancar Apache Kafka desde directorio de Apache-kafka:
+   * Mac/Linux: ``bin/kafka-server-start.sh config/server.properties``
+   * Windows: ``bin\windows\kafka-server-start.bat config\server.properties``
+4. Para arrancarlo todo y que funcione, se debe ejecutar el siguiente comando, estando situado en la carpeta InciDashboard_e4a:
+``mvn spring-boot:run``
+5. Para lanzar incidencias: En windows: bin\windows\kafka-console-producer.bat --broker-list localhost:9092 --topic incidencia
 
+``
+{ "agent":{ 
+		"username": "xxxxx",
+		"password": "xxxxx",
+		"kind": "xxxx"
+	},
+	"inciName": "xxxxx",
+	"location":{	
+		"lat": "xxxxx",
+		"lon": "xxxxx"
+	},
+	"tags": "xxxxx",
+	"moreInfo": "xxxxx",
+	"properties":{
+		"propiedad1": "xxxx",
+		"propiedad2": "xxxx",
+	}
+}
+``
