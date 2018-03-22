@@ -10,4 +10,6 @@ public interface OperatorRepository extends CrudRepository<Operator, Long> {
 
 	List<Operator> findByOperatorname(String operatorName);
 
+	Operator findByEmail(String username);
+
 }
