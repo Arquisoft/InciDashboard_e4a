@@ -1,6 +1,9 @@
 #BBDD
 hsqldb
 
+#Java
+bin
+
 # Log file
 *.log
 
