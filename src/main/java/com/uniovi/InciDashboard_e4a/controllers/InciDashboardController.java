@@ -60,8 +60,9 @@ public class InciDashboardController {
 		Incidence i2 = incidenceService.addIncidence(incidence);
 		SseEventBuilder event = SseEmitter.event().name("newIncidence").data(Incidence2Pojo.convert(i2));
 		sendData(event);		
-		return "/login/login";
+		return "redirect:";
 	}
+	
 	void sendData(SseEventBuilder event) {
 		synchronized (this.emitters) {
 			for (SseEmitter sseEmitter : this.emitters) {
