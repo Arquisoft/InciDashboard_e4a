@@ -76,16 +76,16 @@ public class InsertSampleDataService {
 		incidencia10.setState(State.OPEN);
 		agente3.addIncidence(incidencia10);
 		
-		incidencesService.addIncident(incidencia1);
-		incidencesService.addIncident(incidencia2);
-		incidencesService.addIncident(incidencia3);
-		incidencesService.addIncident(incidencia4);
-		incidencesService.addIncident(incidencia5);
-		incidencesService.addIncident(incidencia6);
-		incidencesService.addIncident(incidencia7);
-		incidencesService.addIncident(incidencia8);
-		incidencesService.addIncident(incidencia9);
-		incidencesService.addIncident(incidencia10);
+		incidencesService.addIncidence(incidencia1);
+		incidencesService.addIncidence(incidencia2);
+		incidencesService.addIncidence(incidencia3);
+		incidencesService.addIncidence(incidencia4);
+		incidencesService.addIncidence(incidencia5);
+		incidencesService.addIncidence(incidencia6);
+		incidencesService.addIncidence(incidencia7);
+		incidencesService.addIncidence(incidencia8);
+		incidencesService.addIncidence(incidencia9);
+		incidencesService.addIncidence(incidencia10);
 		
 		agentsService.addAgent(agente1);
 		agentsService.addAgent(agente2);

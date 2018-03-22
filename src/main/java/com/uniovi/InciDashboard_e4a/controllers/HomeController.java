@@ -39,7 +39,7 @@ public class HomeController {
 	
 	@RequestMapping(value = "/incidences/list", method = RequestMethod.GET)
 	public String list(Model model) {
-		List<Incidence> incidencias = incidencesService.getAllIncidents();
+		List<Incidence> incidencias = incidencesService.getAllIncidences();
 		
 		model.addAttribute("allIncidences" , incidencias); 
 		return "/incidence_list";

@@ -1,43 +1,43 @@
 package com.uniovi.InciDashboard_e4a.kafka;
 
-import javax.annotation.ManagedBean;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.kafka.annotation.KafkaListener;
-import org.springframework.messaging.simp.SimpMessagingTemplate;
+import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
+
+import com.uniovi.InciDashboard_e4a.controllers.InciDashboardController;
+import com.uniovi.InciDashboard_e4a.entities.Incidence;
+import com.uniovi.InciDashboard_e4a.repositories.AgentsRepository;
+
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.annotation.ManagedBean;
 
 @ManagedBean
 public class IncidenceConsumer {
-	
-    private static final Logger logger = LoggerFactory.getLogger(IncidenceConsumer.class);
-    
-    @Autowired
-    private SimpMessagingTemplate messagingTemplate;
-    
-    @KafkaListener(topics="located")
-    public void onGeolocatedIncident(String data) {
-    		logger.info("Incidaencia localizada recibida: " + data);
-    		messagingTemplate.convertAndSend("/incident/located", data);
-    }
-    
-    @KafkaListener(topics="Operable")
-    public void onOperatorIncident(String data) {
-		logger.info("Incidencia con asignacion de un operador recibida: " + data);
-		messagingTemplate.convertAndSend("/incident/Operable", data);
-    }
-    
-    @KafkaListener(topics="sensor")
-    public void onSensorIncident(String data) {
-		logger.info("Incidencia de un sensor recibida " + data);
-		messagingTemplate.convertAndSend("/incident/sensor", data);
-    }
-    
-    @KafkaListener(topics="normal")
-    public void onStandardIncident(String data) {
-    		logger.info("Incidencia normal recibida: " + data);
-    		messagingTemplate.convertAndSend("/incident/normal", data);
-    }
+
+	@Autowired
+	AgentsRepository agentRepository;
+
+	@Autowired
+	InciDashboardController controller;
+
+	@KafkaListener(topics = "incidencia")
+	public void listen(String data) {
+		System.out.println(data);
+		for (SseEmitter emitter : controller.emitters) {
+			try {
+				emitter.send(data, MediaType.APPLICATION_JSON);
+			} catch (IOException e) {
+				emitter.complete();
+			}
+		}
+	}
 
 }
