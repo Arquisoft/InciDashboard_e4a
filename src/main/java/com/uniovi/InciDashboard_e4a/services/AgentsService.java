@@ -1,5 +1,8 @@
 package com.uniovi.InciDashboard_e4a.services;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,5 +19,11 @@ public class AgentsService {
 
 	public Agent findAgentByUsername(String string) {
 		return agentsRepository.findByUsername(string);
+	}
+
+	public List<Agent> findAll() {
+		List<Agent> agentes = new ArrayList<Agent>(); 
+		agentsRepository.findAll().forEach(p -> agentes.add(p));
+		return agentes;
 	}
 }
