@@ -1,4 +1,4 @@
-package steps;
+package com.uniovi.InciDashboard_e4a.steps;
 
 import static org.junit.Assert.assertTrue;
 
