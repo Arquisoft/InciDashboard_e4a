@@ -38,6 +38,6 @@ public class IncidencesService {
 	}
 
 	public Incidence findByInciName(String name){ 
-		return incidentsRepository.findByInciName(name);
+		return incidencesRepository.findByInciName(name);
 	}
 }
