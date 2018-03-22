@@ -4,6 +4,9 @@
 #Kafka
 kafka*
 
+#Java
+bin
+
 # Log file
 *.log
 
