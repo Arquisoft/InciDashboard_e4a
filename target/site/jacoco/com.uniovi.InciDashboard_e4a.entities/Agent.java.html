@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Agent.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">InciDashboard_e4a</a> &gt; <a href="index.source.html" class="el_package">com.uniovi.InciDashboard_e4a.entities</a> &gt; <span class="el_source">Agent.java</span></div><h1>Agent.java</h1><pre class="source lang-java linenums">package com.uniovi.InciDashboard_e4a.entities;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+@Entity
+public class Agent {
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private Long id;
+	
+	private String username;
+	private String password;
+	private String kind;
+	
+	
+<span class="fc" id="L26">	public Agent() {}</span>
+	
+<span class="fc" id="L28">	@OneToMany</span>
+	private Set&lt;Incidence&gt; incidencias = new HashSet&lt;Incidence&gt;();
+	
+<span class="fc" id="L31">	public Agent(String username, String password, String kind) {</span>
+<span class="fc" id="L32">		this.username = username;</span>
+<span class="fc" id="L33">		this.password = password;</span>
+<span class="fc" id="L34">		this.kind = kind;</span>
+<span class="fc" id="L35">	}</span>
+
+	public String getUsername() {
+<span class="nc" id="L38">		return username;</span>
+	}
+
+	public void setUsername(String username) {
+<span class="nc" id="L42">		this.username = username;</span>
+<span class="nc" id="L43">	}</span>
+
+	public String getPassword() {
+<span class="fc" id="L46">		return password;</span>
+	}
+
+	public void setPassword(String password) {
+<span class="fc" id="L50">		this.password = password;</span>
+<span class="fc" id="L51">	}</span>
+
+	public String getKind() {
+<span class="nc" id="L54">		return kind;</span>
+	}
+
+	public void setKind(String kind) {
+<span class="nc" id="L58">		this.kind = kind;</span>
+<span class="nc" id="L59">	}</span>
+
+	public Long getId() {
+<span class="fc" id="L62">		return id;</span>
+	}
+
+	public void setId(Long id) {
+<span class="nc" id="L66">		this.id = id;</span>
+<span class="nc" id="L67">	}</span>
+
+	@Override
+	public int hashCode() {
+<span class="nc" id="L71">		final int prime = 31;</span>
+<span class="nc" id="L72">		int result = 1;</span>
+<span class="nc bnc" id="L73" title="All 2 branches missed.">		result = prime * result + ((id == null) ? 0 : id.hashCode());</span>
+<span class="nc" id="L74">		return result;</span>
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+<span class="nc bnc" id="L79" title="All 2 branches missed.">		if (this == obj)</span>
+<span class="nc" id="L80">			return true;</span>
+<span class="nc bnc" id="L81" title="All 2 branches missed.">		if (obj == null)</span>
+<span class="nc" id="L82">			return false;</span>
+<span class="nc bnc" id="L83" title="All 2 branches missed.">		if (getClass() != obj.getClass())</span>
+<span class="nc" id="L84">			return false;</span>
+<span class="nc" id="L85">		Agent other = (Agent) obj;</span>
+<span class="nc bnc" id="L86" title="All 2 branches missed.">		if (id == null) {</span>
+<span class="nc bnc" id="L87" title="All 2 branches missed.">			if (other.id != null)</span>
+<span class="nc" id="L88">				return false;</span>
+<span class="nc bnc" id="L89" title="All 2 branches missed.">		} else if (!id.equals(other.id))</span>
+<span class="nc" id="L90">			return false;</span>
+<span class="nc bnc" id="L91" title="All 2 branches missed.">		if (username == null) {</span>
+<span class="nc bnc" id="L92" title="All 2 branches missed.">			if (other.username != null)</span>
+<span class="nc" id="L93">				return false;</span>
+<span class="nc bnc" id="L94" title="All 2 branches missed.">		} else if (!username.equals(other.username))</span>
+<span class="nc" id="L95">			return false;</span>
+<span class="nc" id="L96">		return true;</span>
+	}
+
+	@Override
+	public String toString() {
+<span class="nc" id="L101">		return &quot;Agent [id=&quot; + id + &quot;, username=&quot; + username + &quot;, password=&quot; + password + &quot;, kind=&quot; + kind + &quot;]&quot;;</span>
+	}
+
+	public void addIncidence(Incidence incidence) {
+<span class="fc" id="L105">		this.incidencias.add(incidence);</span>
+<span class="fc" id="L106">	}</span>
+	
+	public List&lt;Incidence&gt; getIncByState(State s) {
+<span class="nc" id="L109">		return this.incidencias.stream().filter(x -&gt; x.getState().equals(s)).collect(Collectors.toList());</span>
+	}
+	
+	public List&lt;Incidence&gt; getIncOPEN() {
+<span class="nc" id="L113">		return this.getIncByState(State.OPEN);</span>
+	}
+	public List&lt;Incidence&gt; getIncProg() {
+<span class="nc" id="L116">		return this.getIncByState(State.IN_PROCESS);</span>
+	}
+	public List&lt;Incidence&gt; getIncCLOSED() {
+<span class="nc" id="L119">		return this.getIncByState(State.CLOSED);</span>
+	}
+	public List&lt;Incidence&gt; getIncCANCEL() {
+<span class="nc" id="L122">		return this.getIncByState(State.CANCELLED);</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

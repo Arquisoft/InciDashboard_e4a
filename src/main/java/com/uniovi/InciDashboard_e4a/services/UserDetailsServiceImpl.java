@@ -15,24 +15,24 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.uniovi.InciDashboard_e4a.entities.Agent;
-import com.uniovi.InciDashboard_e4a.repositories.AgentsRepository;
+import com.uniovi.InciDashboard_e4a.entities.Operator;
+import com.uniovi.InciDashboard_e4a.repositories.OperatorRepository;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
 	@Autowired
-	private AgentsRepository agentsRepository;
+	private OperatorRepository operatorRepository;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-		Agent user = agentsRepository.findByUsername(username);
-		// System.out.println(user);
+		Operator user = operatorRepository.findByEmail(username);
+		System.out.println(user);
 		Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
-		grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_AGENT"));
+		grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_OPER"));
 
-		User u = new User(user.getUsername(), user.getPassword(), grantedAuthorities);
+		User u = new User(user.getEmail(), user.getPassword(), grantedAuthorities);
 		return u;
 
 	}
