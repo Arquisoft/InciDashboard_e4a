@@ -36,7 +36,7 @@ public class Incidence {
 	private Long id;
 	
 	private String inciName;
-	private LatLong location;
+	private Location location;
 
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "agent_id")
@@ -57,7 +57,7 @@ public class Incidence {
 	public Incidence() {
 	}
 
-	public Incidence(String name, LatLong location) {
+	public Incidence(String name, Location location) {
 		if (name.equals("") || location == null)
 			throw new IllegalArgumentException("Incident fields cannot be empty");
 
@@ -65,7 +65,7 @@ public class Incidence {
 		this.location = location;
 	}
 
-	public Incidence(String name, LatLong latLng, Agent agent) {
+	public Incidence(String name, Location latLng, Agent agent) {
 		this(name, latLng);
 		this.setAgent(agent);
 	}
@@ -90,7 +90,7 @@ public class Incidence {
 		this.inciName = inciName;
 	}
 
-	public void setLocation(LatLong location) {
+	public void setLocation(Location location) {
 		this.location = location;
 	}
 
@@ -102,7 +102,7 @@ public class Incidence {
 		return inciName;
 	}
 
-	public LatLong getLocation() {
+	public Location getLocation() {
 		return location;
 	}
 

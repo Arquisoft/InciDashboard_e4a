@@ -5,15 +5,15 @@ import javax.persistence.Embeddable;
 import utils.Assert;
 
 @Embeddable
-public class LatLong {
+public class Location {
 
 	public String latitude;
 	public String longitude;
 
-	public LatLong() {
+	public Location() {
 	}
 
-	public LatLong(String lat, String lng) {
+	public Location(String lat, String lng) {
 		Assert.isNull(lat);
 		Assert.isNull(lng);
 		this.latitude = lat;
@@ -55,7 +55,7 @@ public class LatLong {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		LatLong other = (LatLong) obj;
+		Location other = (Location) obj;
 		if (latitude == null) {
 			if (other.latitude != null)
 				return false;

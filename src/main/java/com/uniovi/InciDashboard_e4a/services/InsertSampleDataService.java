@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.uniovi.InciDashboard_e4a.entities.Agent;
 import com.uniovi.InciDashboard_e4a.entities.Incidence;
-import com.uniovi.InciDashboard_e4a.entities.LatLong;
+import com.uniovi.InciDashboard_e4a.entities.Location;
 import com.uniovi.InciDashboard_e4a.entities.State;
 
 @Service
@@ -27,21 +27,24 @@ public class InsertSampleDataService {
 		Agent agente3 = new Agent("hugo", "123456", "1"); 
 		Agent agente4 = new Agent("mirza", "123456", "1"); 
 		Agent agente5 = new Agent("pasadores", "123456", "1"); 
+		
 		agentsService.addAgent(agente1);
 		agentsService.addAgent(agente2);
 		agentsService.addAgent(agente3);
 		agentsService.addAgent(agente4);
 		agentsService.addAgent(agente5);
-		LatLong latlong1 = new LatLong("11", "20"); 
-		LatLong latlong2 = new LatLong("12", "20"); 
-		LatLong latlong3 = new LatLong("13", "20"); 
-		LatLong latlong4 = new LatLong("14", "20"); 
-		LatLong latlong5 = new LatLong("15", "20"); 
-		LatLong latlong6 = new LatLong("16", "20"); 
-		LatLong latlong7 = new LatLong("17", "20"); 
-		LatLong latlong8 = new LatLong("18", "20"); 
-		LatLong latlong9 = new LatLong("19", "20"); 
-		LatLong latlong10 = new LatLong("20", "20"); 
+		
+		Location latlong1 = new Location("11", "20"); 
+		Location latlong2 = new Location("12", "20"); 
+		Location latlong3 = new Location("13", "20"); 
+		Location latlong4 = new Location("14", "20"); 
+		Location latlong5 = new Location("15", "20"); 
+		Location latlong6 = new Location("16", "20"); 
+		Location latlong7 = new Location("17", "20"); 
+		Location latlong8 = new Location("18", "20"); 
+		Location latlong9 = new Location("19", "20"); 
+		Location latlong10 = new Location("20", "20"); 
+		
 		Incidence incidencia1 = new Incidence("Prueba1", latlong1, agente1); 
 		incidencia1.setState(State.CANCELLED);
 		agente1.addIncidence(incidencia1);
@@ -72,6 +75,7 @@ public class InsertSampleDataService {
 		Incidence incidencia10 = new Incidence("Prueba10", latlong10, agente3); 
 		incidencia10.setState(State.OPEN);
 		agente3.addIncidence(incidencia10);
+		
 		incidencesService.addIncident(incidencia1);
 		incidencesService.addIncident(incidencia2);
 		incidencesService.addIncident(incidencia3);
@@ -82,6 +86,7 @@ public class InsertSampleDataService {
 		incidencesService.addIncident(incidencia8);
 		incidencesService.addIncident(incidencia9);
 		incidencesService.addIncident(incidencia10);
+		
 		agentsService.addAgent(agente1);
 		agentsService.addAgent(agente2);
 		agentsService.addAgent(agente3);
