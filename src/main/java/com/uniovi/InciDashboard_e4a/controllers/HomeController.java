@@ -26,15 +26,18 @@ public class HomeController {
 	
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String index(Model model) {
-		Agent agent = agentsService.findAgentByUsername("antonio");
+		Agent agent = agentsService.getActiveAgent();
 		
 		model.addAttribute("agent", agent);
 		return "/index";
 	}
 	
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String login(Model model) {
-		return "/login";
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String indexBarra(Model model) {
+		Agent agent = agentsService.getActiveAgent();
+		
+		model.addAttribute("agent", agent);
+		return "/index";
 	}
 	
 	@RequestMapping(value = "/incidences/list", method = RequestMethod.GET)
