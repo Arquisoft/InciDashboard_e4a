@@ -1,6 +1,9 @@
 #BBDD
 *hsqldb*
 
+#Kafka
+kafka*
+
 # Log file
 *.log
 
