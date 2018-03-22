@@ -1,5 +1,8 @@
 package com.uniovi.InciDashboard_e4a.services;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,6 +82,11 @@ public class InsertSampleDataService {
 		Incidence incidencia9 = new Incidence("Prueba9", latlong9, agente4); 
 		incidencia9.setState(State.IN_PROCESS);
 		Incidence incidencia10 = new Incidence("Prueba10", latlong10, agente3); 
+		Map<String, Object> camposExtra = new HashMap<String, Object>(); 
+		camposExtra.put("hola", "que tal");
+		camposExtra.put("yo bien", "y tu");
+		camposExtra.put("se nos quema", "la casa");
+		incidencia10.setProperties(camposExtra);
 		incidencia10.setState(State.OPEN);
 	
 		incidencesService.addIncidence(incidencia1);
