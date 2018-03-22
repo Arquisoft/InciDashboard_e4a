@@ -1,7 +1,9 @@
 package com.uniovi.InciDashboard_e4a.entities;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -22,6 +24,7 @@ public class Operator {
 
 	@Column(unique = true)
 	private String email;
+	private String password;
 
 	private String operatorname;
 	private int isAdmin;
@@ -38,6 +41,14 @@ public class Operator {
 	public Operator(Long id, String email, String operatorname, int isAdmin) {
 		super();
 		this.id = id;
+		this.email = email;
+		this.operatorname = operatorname;
+		this.isAdmin = isAdmin;
+	}
+	
+	public Operator(String email,String operatorname,String passwd, int isAdmin) {
+		super();
+		this.password = passwd;
 		this.email = email;
 		this.operatorname = operatorname;
 		this.isAdmin = isAdmin;
@@ -119,4 +130,32 @@ public class Operator {
 		this.notifications = notifications;
 	}
 
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public List<Incidence> getIncByState(State s) {
+		List<Incidence> inc = notifications.stream().map(x -> x.getIncidencia()).collect(Collectors.toList());
+		return inc.stream().filter(x -> x.getState().equals(s)).collect(Collectors.toList());
+	}
+
+	public List<Incidence> getIncOPEN() {
+		return this.getIncByState(State.OPEN);
+	}
+
+	public List<Incidence> getIncProg() {
+		return this.getIncByState(State.IN_PROCESS);
+	}
+
+	public List<Incidence> getIncCLOSED() {
+		return this.getIncByState(State.CLOSED);
+	}
+
+	public List<Incidence> getIncCANCEL() {
+		return this.getIncByState(State.CANCELLED);
+	}
 }

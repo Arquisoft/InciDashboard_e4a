@@ -5,35 +5,43 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Notification {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
+
 	private String description;
-	
+
 	@ManyToOne
 	private Operator operator;
 
+	@OneToOne
+	private Incidence incidencia;
+
 	/**
-	 * Default constructor  
+	 * Default constructor
 	 */
 	public Notification() {
-		
+
 	}
-	
-	
+
 	public Notification(Long id, String description, Operator operator) {
 		super();
 		this.id = id;
 		this.description = description;
 		this.operator = operator;
 	}
-
-
+	
+	public Notification(String description, Operator operator,Incidence i) {
+		super();
+		this.description = description;
+		this.operator = operator;
+		this.incidencia = i;
+	}
 
 	@Override
 	public int hashCode() {
@@ -43,8 +51,6 @@ public class Notification {
 		result = prime * result + ((operator == null) ? 0 : operator.hashCode());
 		return result;
 	}
-
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -68,7 +74,21 @@ public class Notification {
 		return true;
 	}
 
+	public Operator getOperator() {
+		return operator;
+	}
 
+	public void setOperator(Operator operator) {
+		this.operator = operator;
+	}
+
+	public Incidence getIncidencia() {
+		return incidencia;
+	}
+
+	public void setIncidencia(Incidence incidencia) {
+		this.incidencia = incidencia;
+	}
 
 	public String getDescription() {
 		return description;
@@ -76,5 +96,9 @@ public class Notification {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	public String tagList() {
+		return this.incidencia.tagList();
 	}
 }
