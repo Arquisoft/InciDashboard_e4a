@@ -22,6 +22,7 @@ public class Agent {
 	private String password;
 	private String kind;
 	
+	
 	public Agent() {}
 	
 	@OneToMany

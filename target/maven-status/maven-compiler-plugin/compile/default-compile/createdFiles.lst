@@ -1,12 +1,15 @@
 com\uniovi\InciDashboard_e4a\entities\Notification.class
+com\uniovi\InciDashboard_e4a\WebSecurityConfig.class
 com\uniovi\InciDashboard_e4a\services\NotificationsService.class
-com\uniovi\InciDashboard_e4a\WebSecurity.class
 com\uniovi\InciDashboard_e4a\json\Serializer.class
 com\uniovi\InciDashboard_e4a\InciDashboardE4aApplication.class
 com\uniovi\InciDashboard_e4a\services\IncidencesService.class
+com\uniovi\InciDashboard_e4a\services\SecurityService.class
 com\uniovi\InciDashboard_e4a\entities\LatLong.class
+com\uniovi\InciDashboard_e4a\services\UserDetailsServiceImpl.class
 utils\JSONFormatter$1.class
 com\uniovi\InciDashboard_e4a\repositories\OperatorRepository.class
+com\uniovi\InciDashboard_e4a\controllers\LoginController.class
 com\uniovi\InciDashboard_e4a\json\JSONModule.class
 utils\Assert.class
 com\uniovi\InciDashboard_e4a\repositories\AgentsRepository.class
