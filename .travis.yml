@@ -1,0 +1,28 @@
+language: java
+sudo: required
+jdk:
+- oraclejdk8
+env:
+  global:
+  - ZOOKEEPER_PEERS=localhost:2181
+  - KAFKA_PEERS=localhost:9092
+after_success:
+- bash <(curl -s https://codecov.io/bash)
+- nohup bash -c "cd kafka && bin/kafka-server-stop.sh config/server.properties &"
+- sleep 10
+- nohup bash -c "cd kafka && bin/zookeeper-server-stop.sh config/zookeeper.properties &"
+addons:
+  firefox: "46.0"
+before_install:
+- wget http://apache.rediris.es/kafka/1.0.1/kafka_2.11-1.0.1.tgz -O kafka.tgz
+- mkdir -p kafka && tar xzf kafka.tgz -C kafka --strip-components 1
+- nohup bash -c "cd kafka && bin/zookeeper-server-start.sh config/zookeeper.properties &"
+- nohup bash -c "cd kafka && bin/kafka-server-start.sh config/server.properties &"
+install: true
+before_script:
+- "export DISPLAY=:99.0"
+- "sh -e /etc/init.d/xvfb start"
+- sleep 3 # give xvfb some time to start
+script: 
+- nohup bash -c "cd data/hsqldb/bin && ./runServer.sh &"
+- "mvn test"

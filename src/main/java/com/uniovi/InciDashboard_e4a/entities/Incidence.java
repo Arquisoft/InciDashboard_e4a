@@ -51,7 +51,7 @@ public class Incidence {
 
 	@Convert(converter = IncidentProperties2Json.class)
 	private Map<String, Object> properties = new HashMap<String, Object>();
-
+	
 	@Enumerated(EnumType.STRING)
 	private State state;
 
@@ -59,6 +59,7 @@ public class Incidence {
 	private Notification notification;
 
 	public Incidence() {
+		
 	}
 
 	public Incidence(String name, LatLong location) {

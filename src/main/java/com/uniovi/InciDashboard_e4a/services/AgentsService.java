@@ -31,6 +31,7 @@ public class AgentsService {
 	public Agent findAgentByUsername(String string) {
 		return agentsRepository.findByUsername(string);
 	}
+
 	
 	public Agent getActiveAgent() {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -43,5 +44,6 @@ public class AgentsService {
 		List<Agent> usuarios = new ArrayList<Agent>();
 		agentsRepository.findAll().forEach(usuarios::add);
 		return usuarios;
+
 	}
 }

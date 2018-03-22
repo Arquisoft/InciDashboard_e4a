@@ -1,5 +1,8 @@
 #BBDD
-hsqldb
+*hsqldb*
+
+#Kafka
+kafka*
 
 #Java
 bin
