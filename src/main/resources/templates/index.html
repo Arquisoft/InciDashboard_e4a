@@ -63,16 +63,24 @@
 							</div>
 							<div class="col-md-3">
 								<div class="weekly-summary text-right">
-									<span class="number">60</span> <span class="percentage"><i class="fa fa-caret-up text-success"></i> 12%</span>
-									<span class="info-label">Incidencias producidas</span>
+									<span class="number" th:text="${operator.getIncOPEN().size()-operator.getIncCLOSED().size()}"></span> 
+									<span class="percentage">
+										<i class="fa fa-caret-up text-success" th:if="${(operator.getIncOPEN().size()-operator.getIncCLOSED().size())>=0}"></i>
+										<i class="fa fa-caret-up text-danger" th:if="${(operator.getIncOPEN().size()-operator.getIncCLOSED().size())<0}"></i>  
+										<span th:text="${operator.getIncOPEN().size()}">12</span> vs
+										<span th:text="${operator.getIncCLOSED().size()}">12</span>
+									</span>
+									<span class="info-label">Open vs Closed</span>
 								</div>
 								<div class="weekly-summary text-right">
-									<span class="number">27</span> <span class="percentage"><i class="fa fa-caret-up text-success"></i> 23%</span>
-									<span class="info-label">Incidencias cerradas</span>
-								</div>
-								<div class="weekly-summary text-right">
-									<span class="number">35</span> <span class="percentage"><i class="fa fa-caret-down text-danger"></i> 8%</span>
-									<span class="info-label">Incidencias canceladas</span>
+									<span class="number" th:text="${operator.getIncProg().size()-operator.getIncCANCEL().size()}"></span> 
+									<span class="percentage">
+										<i class="fa fa-caret-up text-success" th:if="${(operator.getIncProg().size()-operator.getIncCANCEL().size())>=0}"></i>
+										<i class="fa fa-caret-up text-danger" th:if="${(operator.getIncProg().size()-operator.getIncCANCEL().size())<0}"></i>  
+										<span th:text="${operator.getIncProg().size()}">12 </span> vs
+										<span th:text="${operator.getIncCANCEL().size()}">12</span>
+									</span>
+									<span class="info-label">In process vs Cancelled</span>
 								</div>
 							</div>
 						</div>
@@ -100,12 +108,13 @@
 											<th>Desc</th>
 											<th>Agent</th>
 											<th>Tags</th>
-											<th>Status</th>											
+											<th>Status</th>
+											<th>Edit status</th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr th:each="noti : ${nots}">
-											<td><a th:href="@{/incidences/{path}(path= ${noti.incidencia.id})}" th:text="${noti.incidencia.inciName}">763648</a></td>
+											<td><a href="#" th:text="${noti.incidencia.inciName}">763648</a></td>
 											<td th:text="${noti.description}">Steve</td>
 											<td th:text="${noti.incidencia.agent.username}">$122</td>
 											<td th:text="${noti.tagList()}">Oct 21, 2016</td>
@@ -114,7 +123,10 @@
 											<td th:if="${noti.incidencia.isClosed()}"><span class="label label-default">Closed</span></td>
 											<td th:if="${noti.incidencia.isCancelled()}"><span class="label label-danger">Cancelled</span></td>
 
-											
+											<td th:if="${noti.incidencia.isOpen()}"></td>
+											<td th:if="${noti.incidencia.isInProg()}"><button type="button" class="btn btn-success"> Close</button></td>
+											<td th:if="${noti.incidencia.isClosed()}"><button type="button" class="btn btn-info"> ReOpen</button></td>
+											<td th:if="${noti.incidencia.isCancelled()}"></td>
 										</tr>
 									</tbody>
 								</table>

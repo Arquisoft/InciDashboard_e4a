@@ -46,18 +46,6 @@
 							<a th:if="${noti.incidencia.isCancelled()}" href="#" class="notification-item"><span
 							class="dot bg-danger"></span><span th:text="${noti.description}">Notificacion de ejemplo</span></a>
 						</li>
-								
-						<!--  Otros tipos de notificaciones
-						<li><a href="#" class="notification-item"><span
-								class="dot bg-danger"></span>You have 9 unfinished tasks</a></li>
-						<li><a href="#" class="notification-item"><span
-								class="dot bg-success"></span>Monthly report is available</a></li>
-						<li><a href="#" class="notification-item"><span
-								class="dot bg-warning"></span>Weekly meeting in 1 hour</a></li>
-						<li><a href="#" class="notification-item"><span
-								class="dot bg-success"></span>Your request has been approved</a></li>
-						<li><a href="#" class="more">See all notifications</a></li>
-						-->
 						
 					</ul></li>
 					
@@ -67,9 +55,8 @@
 						class="img-circle" alt="Avatar"> <span th:text="${operator.operatorname}">Usuario</span> <i
 						class="icon-submenu lnr lnr-chevron-down"></i></a>
 					<ul class="dropdown-menu">
-						<li><a href="#"><i class="lnr lnr-user"></i> <span>Perfil</span></a></li>
-						<li><a href="#"><i class="lnr lnr-cog"></i> <span>Ajustes</span></a></li>
-						<li><a href="#"><i class="lnr lnr-exit"></i> <span>Cerrar sesion</span></a></li>
+						<li><a href="/"><i class="lnr lnr-user"></i> <span>Perfil</span></a></li>
+						<li><a href="/logout"><i class="lnr lnr-exit"></i> <span>Cerrar sesion</span></a></li>
 					</ul></li>
 			</ul>
 		</div>
@@ -85,9 +72,9 @@
 				<li><a href="/home" class="active"><i
 						class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
 				<li><a href="/incidences/list" class=""><i
-						class="lnr lnr-users"></i> <span>Incidencias</span></a></li>	
+						class="fa fa-exclamation-triangle"></i> <span>Incidencias</span></a></li>	
 				<li><a href="/randomPetition" class=""><i
-						class="lnr lnr-users"></i> <span>Mock generador de incidencias</span></a></li>			
+						class="fa fa-database"></i> <span>Mock generador de incidencias</span></a></li>			
 			</ul>
 		</nav>
 	</div>
