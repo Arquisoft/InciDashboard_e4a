@@ -1,5 +1,6 @@
 package com.uniovi.InciDashboard_e4a.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,10 +28,12 @@ public class IncidencesController {
 	@RequestMapping(value = "/incidences/list", method = RequestMethod.GET)
 	public String list(Model model) {
 
-		List<Incidence> incidencias = incidencesService.getAllIncidences();
+		
 		Operator operator = operatorService.getActiveOperator();
+		List<Incidence> incidencias = new ArrayList<Incidence>();
+		operator.getNotifications().forEach(p-> incidencias.add(p.getIncidencia()));
 		List<Notification> nots = operator.getNotifications().stream().collect(Collectors.toList());
-
+		
 		model.addAttribute("nots", nots);
 		model.addAttribute("operator", operator);
 		model.addAttribute("allIncidences", incidencias);
