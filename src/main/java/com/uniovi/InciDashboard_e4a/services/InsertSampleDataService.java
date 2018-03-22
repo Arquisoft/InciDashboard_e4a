@@ -82,11 +82,11 @@ public class InsertSampleDataService {
 		incidencesService.addIncident(incidencia8);
 		incidencesService.addIncident(incidencia9);
 		incidencesService.addIncident(incidencia10);
-		agentsService.addAgent(agente1);
-		agentsService.addAgent(agente2);
-		agentsService.addAgent(agente3);
-		agentsService.addAgent(agente4);
-		agentsService.addAgent(agente5);
+		agentsService.updateAgent(agente1);
+		agentsService.updateAgent(agente2);
+		agentsService.updateAgent(agente3);
+		agentsService.updateAgent(agente4);
+		agentsService.updateAgent(agente5);
 	}
 
 }

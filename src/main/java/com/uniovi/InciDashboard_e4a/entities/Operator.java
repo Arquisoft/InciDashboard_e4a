@@ -17,23 +17,24 @@ import javax.persistence.OneToMany;
 public class Operator {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
-	@Column(unique=true)
+
+	@Column(unique = true)
 	private String email;
-	
+
 	private String operatorname;
 	private int isAdmin;
-	
-	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-    @JoinColumn(name="operator_id")
-	private Set<Notification> notifications = new HashSet<>();
-	
 
-	public Operator() {}
-	
-	
+	private String role;
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "operator_id")
+	private Set<Notification> notifications = new HashSet<>();
+
+	public Operator() {
+	}
+
 	public Operator(Long id, String email, String operatorname, int isAdmin) {
 		super();
 		this.id = id;
@@ -41,8 +42,6 @@ public class Operator {
 		this.operatorname = operatorname;
 		this.isAdmin = isAdmin;
 	}
-
-
 
 	@Override
 	public int hashCode() {
@@ -52,8 +51,6 @@ public class Operator {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
-
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -77,14 +74,18 @@ public class Operator {
 		return true;
 	}
 
+	public String getRole() {
+		return role;
+	}
 
+	public void setRole(String role) {
+		this.role = role;
+	}
 
 	@Override
 	public String toString() {
 		return "Operator [email=" + email + ", operatorname=" + operatorname + ", isAdmin=" + isAdmin + "]";
 	}
-
-
 
 	public String getEmail() {
 		return email;
