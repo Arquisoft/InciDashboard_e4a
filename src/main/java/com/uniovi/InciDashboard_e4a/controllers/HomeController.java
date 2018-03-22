@@ -43,12 +43,7 @@ public class HomeController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String indexBarra(Model model) {
-		Operator operator = operatorService.getActiveOperator();
-		List<Notification> nots = operator.getNotifications().stream().collect(Collectors.toList());
-
-		model.addAttribute("nots", nots);
-		model.addAttribute("operator", operator);
-		return "/index";
+		return "redirect:/home";
 	}
 
 	

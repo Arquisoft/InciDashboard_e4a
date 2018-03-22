@@ -57,7 +57,7 @@ El objetivo de este proyecto es actuar como modulo de Dashboard para un sistema 
 	"moreInfo": "xxxxx",
 	"properties":{
 		"propiedad1": "xxxx",
-		"propiedad2": "xxxx",
+		"propiedad2": "xxxx"
 	}
 }
 ``
