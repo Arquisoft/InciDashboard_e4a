@@ -5,13 +5,13 @@
 <!-- CONTENEDOR -->
 <div id="wrapper">
 	<nav th:replace="fragments/nav" />
-	
+
 	<!-- MAIN -->
 	<div class="main">
 		<!-- CONTENIDO -->
 		<div class="main-content">
 			<div class="container-fluid">
-			
+
 				<!-- GENERAL -->
 				<div class="panel panel-headline">
 					<div class="panel-heading">
@@ -79,7 +79,7 @@
 					</div>
 				</div>
 				<!-- END OVERVIEW -->
-				
+
 				<!-- Lista de notificaciones -->
 				<div class="row">
 					<div class="col-md-12">
@@ -114,7 +114,7 @@
 											<td th:if="${noti.incidencia.isInProg()}"><span class="label label-info">In Process</span></td>
 											<td th:if="${noti.incidencia.isClosed()}"><span class="label label-default">Closed</span></td>
 											<td th:if="${noti.incidencia.isCancelled()}"><span class="label label-danger">Cancelled</span></td>
-											
+
 											<td th:if="${noti.incidencia.isOpen()}"></td>
 											<td th:if="${noti.incidencia.isInProg()}"><button type="button" class="btn btn-success"> Close</button></td>
 											<td th:if="${noti.incidencia.isClosed()}"><button type="button" class="btn btn-info"> ReOpen</button></td>
@@ -133,12 +133,12 @@
 						<!-- END RECENT PURCHASES -->
 					</div>
 				</div>
-				
+
 				<!-- MAPA -->
 				<div class="row">
 					<div class="col-md-12"><div id="map" style="width:800px;height:800px"></div></div>
 				</div>
-				
+
 			</div>
 		</div>
 		<!-- CONTENIDO -->
@@ -198,6 +198,7 @@
 	/*]]>*/
 </script>
 <script type="text/javascript" th:inline="javascript">
+
 /*<![CDATA[*/
 function myMap()
 {
@@ -206,33 +207,37 @@ function myMap()
 	    center: new google.maps.LatLng(43.518197, -5.641936),
 	    mapTypeId: google.maps.MapTypeId.ROADMAP
 	  });
-	 
+
 	var infowindow = new google.maps.InfoWindow();
 
 	var marker;
-	var i = 0;
-  
-	/*[# th:each="noti : ${nots}"]*/
-	
-	i++;
-	marker = new google.maps.Marker({
-	      position: new google.maps.LatLng(
-	    		  parseInt(/*[[${noti.incidencia.location.latitude}]]*/),
-	    		  parseInt(/*[[${noti.incidencia.location.longitude}]]*/)),
-	      map: map
-	    });
-	console.log(i);
 
-    google.maps.event.addListener(marker, 'click', (function(marker, i) {
-      return function() {
-        infowindow.setContent(/*[[${noti.incidencia.inciName}]]*/);
-        infowindow.open(map, marker);
-      }
-    })(marker, i));
-	/*[/]*/
+	var data = /*[[${incis}]]*/
+	var dataInfo = /*[[${incisInfo}]]*/
+	console.log(data);
+	console.log(dataInfo);
+    for (i = 1; i < data.length; i++) {
+
+			marker = new google.maps.Marker({
+						position: new google.maps.LatLng(
+								parseInt(data[i-1].latitude),
+								parseInt(data[i-1].longitude)),
+						map: map
+					});
+			console.log(i);
+
+				google.maps.event.addListener(marker, 'click', (function(marker, i) {
+					return function() {
+						infowindow.setContent(dataInfo[i-1]);
+						infowindow.open(map, marker);
+					}
+				})(marker, i));
+    }
 }
   /*]]>*/
-</script> 
+
+
+</script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLJQKw9sNiw5jYMR2WdqkKHhWvnNFFx3E &callback=myMap"></script>
 </body>
 
