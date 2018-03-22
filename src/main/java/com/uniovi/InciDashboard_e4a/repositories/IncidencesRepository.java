@@ -24,5 +24,8 @@ public interface IncidencesRepository extends CrudRepository<Incidence, Long> {
 	@Transactional
 	@Query("UPDATE Incidence SET state = ?2 WHERE id = ?1")
 	public void updateStatus(Long id, State state);
+  
+  public Incidence findByInciName(String name);
+
 
 }

@@ -36,4 +36,8 @@ public class IncidencesService {
 		incidencesRepository.updateStatus(id, StateChecker.getState(status)); 
 		
 	}
+
+	public Incidence findByInciName(String name){ 
+		return incidentsRepository.findByInciName(name);
+	}
 }
