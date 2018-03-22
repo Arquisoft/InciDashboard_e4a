@@ -30,7 +30,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		Agent user = agentsRepository.findByUsername(username);
 		// System.out.println(user);
 		Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
-		grantedAuthorities.add(new SimpleGrantedAuthority("AGENT"));
+		grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_AGENT"));
 
 		User u = new User(user.getUsername(), user.getPassword(), grantedAuthorities);
 		return u;
