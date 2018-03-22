@@ -100,13 +100,12 @@
 											<th>Desc</th>
 											<th>Agent</th>
 											<th>Tags</th>
-											<th>Status</th>
-											<th>Edit status</th>
+											<th>Status</th>											
 										</tr>
 									</thead>
 									<tbody>
 										<tr th:each="noti : ${nots}">
-											<td><a href="#" th:text="${noti.incidencia.inciName}">763648</a></td>
+											<td><a th:href="@{/incidences/{path}(path= ${noti.incidencia.id})}" th:text="${noti.incidencia.inciName}">763648</a></td>
 											<td th:text="${noti.description}">Steve</td>
 											<td th:text="${noti.incidencia.agent.username}">$122</td>
 											<td th:text="${noti.tagList()}">Oct 21, 2016</td>
@@ -115,10 +114,7 @@
 											<td th:if="${noti.incidencia.isClosed()}"><span class="label label-default">Closed</span></td>
 											<td th:if="${noti.incidencia.isCancelled()}"><span class="label label-danger">Cancelled</span></td>
 
-											<td th:if="${noti.incidencia.isOpen()}"></td>
-											<td th:if="${noti.incidencia.isInProg()}"><button type="button" class="btn btn-success"> Close</button></td>
-											<td th:if="${noti.incidencia.isClosed()}"><button type="button" class="btn btn-info"> ReOpen</button></td>
-											<td th:if="${noti.incidencia.isCancelled()}"></td>
+											
 										</tr>
 									</tbody>
 								</table>
