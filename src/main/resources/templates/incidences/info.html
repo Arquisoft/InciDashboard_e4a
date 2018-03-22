@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="es">
+<head th:replace="fragments/head" />
+<body>
+	<!-- CONTENEDOR -->
+	<div id="wrapper">
+		<nav th:replace="fragments/nav" />
+
+		<!-- MAIN -->
+		<div class="main">
+			<!-- CONTENIDO -->
+			<div class="main-content">
+				<div class="container-fluid">
+
+					<div class="panel panel-headline">
+						<div class="panel-heading">
+							<h3 class="panel-title">Incidencia</h3>
+							<p class="panel-subtitle" th:text="${incidence.inciName}"></p>
+						</div>
+						<div class="panel-body">
+							<table class="table table-striped" id="tablaIncidencias">
+								<tr>
+									<th>ID</th>
+									<th>Name</th>
+									<th>Location</th>
+									<th>Agente</th>
+									<th>State</th>
+								</tr>
+								<tr>
+									<th><a class="incidence" th:href="${incidence.id}"
+										th:text="${incidence.id}"></a></th>
+									<td th:text="${incidence.inciName}"></td>
+									<td th:text="${incidence.location}"></td>
+									<td th:text="${incidence.agent}"></td>
+									<td th:text="${incidence.state}"></td>
+								</tr>
+							</table>
+						</div>
+						<div class="row">
+							<div class="col-md-5">
+								<div class="panel panel-headline"
+									th:if="not ${incidence.properties.isEmpty()}" )>
+									<div class="panel-heading">
+										<h3 class="panel-title">Propiedades</h3>
+										<p class="panel-subtitle"></p>
+									</div>
+									<div class="panel-body">
+										<table class="table table-striped" id="tablaIncidencias">
+											<tr>
+												<th>CLAVE</th>
+												<th>VALOR</th>
+											</tr>
+											<tr th:each="element : ${incidence.properties}">
+												<td th:text="${element.key}"></td>
+												<td th:text="${element.value}"></td>
+											</tr>
+										</table>
+									</div>
+								</div>
+								<!-- END PANEL HEADLINE -->
+							</div>
+
+
+							<div class="col-md-5">
+								<div class="panel panel-headline"
+									th:if="not ${incidence.moreInfo.isEmpty()}" )>
+									<div class="panel-heading">
+										<h3 class="panel-title">Información adicional</h3>
+										<p class="panel-subtitle"></p>
+									</div>
+									<div class="panel-body">
+										<table class="table table-striped" id="tablaIncidencias">
+											<tr th:each="element : ${incidence.moreInfo}">
+												<td th:text="${element}"></td>
+											</tr>
+										</table>
+									</div>
+
+								</div>
+								<!-- END PANEL HEADLINE -->
+							</div>
+						</div>
+						<div class="panel panel-headline">
+							<div class="panel-heading">
+								<h3 class="panel-title">Cambiar estado de la incidencia</h3>
+							</div>
+							<div class="panel-body">
+								<div class="row">
+									<div class="col-md-3">
+										<button type="button" onclick="status(1)"class="btn btn-default">Marcar como abierta</button>
+									</div>
+									<div class="col-md-3">
+										<button type="button" onclick="status(2)" class="btn btn-warning">Marcar como en proceso</button>
+									</div>
+									<div class="col-md-3">
+										<button type="button" onclick="status(3)" class="btn btn-success">Marcar como en cerrada</button>
+									</div>
+									<div class="col-md-3">
+										<button type="button" onclick="status(4)" class="btn btn-danger">Marcar como en cancelada</button>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+		<!-- CONTENIDO -->
+	</div>
+	<!-- END MAIN -->
+	<div class="clearfix"></div>
+	<footer>
+		<div class="container-fluid">
+			<p class="copyright">
+				&copy; 2018 <a href="#" target="_blank">InciDashboard</a>. All
+				Rights Reserved.
+			</p>
+		</div>
+	</footer>
+	</div>
+	<!-- END CONTENEDOR -->
+
+	<!-- JS -->
+	<script src="/assets/vendor/jquery/jquery.min.js"></script>
+	<script src="/assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="/assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+	<script
+		src="/assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
+	<script src="/assets/vendor/chartist/js/chartist.min.js"></script>
+	<script src="/assets/scripts/klorofil-common.js"></script>	
+	<script src="/js/info.js"></script>
+</body>
+
+</html>
