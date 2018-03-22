@@ -115,15 +115,15 @@ public class InsertSampleDataService {
 		notService.addIncident(n10);
 		
 		incidencia1.addNot(n1);
-		incidencia1.addNot(n2);
-		incidencia1.addNot(n3);
-		incidencia1.addNot(n4);
-		incidencia1.addNot(n5);
-		incidencia1.addNot(n6);
-		incidencia1.addNot(n7);
-		incidencia1.addNot(n8);
-		incidencia1.addNot(n9);
-		incidencia1.addNot(n10);
+		incidencia2.addNot(n2);
+		incidencia3.addNot(n3);
+		incidencia4.addNot(n4);
+		incidencia5.addNot(n5);
+		incidencia6.addNot(n6);
+		incidencia7.addNot(n7);
+		incidencia8.addNot(n8);
+		incidencia9.addNot(n9);
+		incidencia10.addNot(n10);
 		
 		incidencesService.addIncident(incidencia1);
 		incidencesService.addIncident(incidencia2);

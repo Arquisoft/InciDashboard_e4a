@@ -24,4 +24,8 @@ public class IncidencesService {
 	public void deleteIncidentByName(String inciName) {
 		incidentsRepository.deleteByInciName(inciName);
 	}
+
+	public Incidence findByInciName(String name){ 
+		return incidentsRepository.findByInciName(name);
+	}
 }

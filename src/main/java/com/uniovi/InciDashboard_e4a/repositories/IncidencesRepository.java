@@ -12,4 +12,6 @@ public interface IncidencesRepository extends CrudRepository<Incidence, Long> {
 
 	public void deleteByInciName(String inciName);
 
+	public Incidence findByInciName(String name);
+
 }
