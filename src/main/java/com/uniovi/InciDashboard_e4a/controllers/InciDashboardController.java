@@ -25,9 +25,6 @@ public class InciDashboardController {
 
 	@Autowired
 	IncidencesService incidenceService;
-
-	
-	
 	
 	@Autowired
 	AgentsService agentsService; 
