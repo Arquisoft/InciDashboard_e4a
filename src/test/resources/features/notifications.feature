@@ -1,4 +1,6 @@
 Feature: Dangerous values
+	If values of certain properties will be dangerous, the system will 
+	notice workers to take actions
 Scenario Outline: Dangerous values
     Given a incidence <incidence>
     Then the system will notice with message <message>
