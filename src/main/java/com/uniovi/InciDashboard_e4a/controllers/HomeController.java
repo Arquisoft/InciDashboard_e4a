@@ -12,7 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.uniovi.InciDashboard_e4a.entities.Incidence;
 import com.uniovi.InciDashboard_e4a.entities.Notification;
 import com.uniovi.InciDashboard_e4a.entities.Operator;
 import com.uniovi.InciDashboard_e4a.services.IncidencesService;
