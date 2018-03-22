@@ -87,6 +87,9 @@ public class InsertSampleDataService {
 		camposExtra.put("yo bien", "y tu");
 		camposExtra.put("se nos quema", "la casa");
 		incidencia10.setProperties(camposExtra);
+		incidencia10.addMoreInfo("Más información 1");
+		incidencia10.addMoreInfo("Más información 2");
+		incidencia10.addMoreInfo("El osito mola mogollón");
 		incidencia10.setState(State.OPEN);
 	
 		incidencesService.addIncidence(incidencia1);

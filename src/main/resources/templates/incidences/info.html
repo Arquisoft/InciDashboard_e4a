@@ -36,42 +36,90 @@
 								</tr>
 							</table>
 						</div>
-						<div class="panel panel-headline" th:if = "not ${incidence.properties.isEmpty()}")>
+						<div class="row">
+							<div class="col-md-5">
+								<div class="panel panel-headline"
+									th:if="not ${incidence.properties.isEmpty()}" )>
+									<div class="panel-heading">
+										<h3 class="panel-title">Propiedades</h3>
+										<p class="panel-subtitle"></p>
+									</div>
+									<div class="panel-body">
+										<table class="table table-striped" id="tablaIncidencias">
+											<tr>
+												<th>CLAVE</th>
+												<th>VALOR</th>
+											</tr>
+											<tr th:each="element : ${incidence.properties}">
+												<td th:text="${element.key}"></td>
+												<td th:text="${element.value}"></td>
+											</tr>
+										</table>
+									</div>
+								</div>
+								<!-- END PANEL HEADLINE -->
+							</div>
+
+
+							<div class="col-md-5">
+								<div class="panel panel-headline"
+									th:if="not ${incidence.moreInfo.isEmpty()}" )>
+									<div class="panel-heading">
+										<h3 class="panel-title">Información adicional</h3>
+										<p class="panel-subtitle"></p>
+									</div>
+									<div class="panel-body">
+										<table class="table table-striped" id="tablaIncidencias">
+											<tr th:each="element : ${incidence.moreInfo}">
+												<td th:text="${element}"></td>
+											</tr>
+										</table>
+									</div>
+
+								</div>
+								<!-- END PANEL HEADLINE -->
+							</div>
+						</div>
+						<div class="panel panel-headline">
 							<div class="panel-heading">
-								<h3 class="panel-title">Información adicional</h3>
-								<p class="panel-subtitle"></p>
+								<h3 class="panel-title">Cambiar estado de la incidencia</h3>
 							</div>
 							<div class="panel-body">
-							<table class="table table-striped" id="tablaIncidencias">
-								<tr >
-									<th>CLAVE</th>
-									<th>VALOR</th>									
-								</tr>
-								<tr th:each = "element : ${incidence.properties}">									
-									<td th:text="${element.key}"></td>
-									<td th:text="${element.value}"></td>
-								</tr>
-							</table>
+								<div class="row">
+									<div class="col-md-3">
+										<button type="button" onclick="status(1)"class="btn btn-default">Marcar como abierta</button>
+									</div>
+									<div class="col-md-3">
+										<button type="button" onclick="status(2)" class="btn btn-warning">Marcar como en proceso</button>
+									</div>
+									<div class="col-md-3">
+										<button type="button" onclick="status(3)" class="btn btn-success">Marcar como en cerrada</button>
+									</div>
+									<div class="col-md-3">
+										<button type="button" onclick="status(4)" class="btn btn-danger">Marcar como en cancelada</button>
+									</div>
+								</div>
 							</div>
-
 						</div>
-					</div>
-					<!-- END PANEL HEADLINE -->
 
+					</div>
 				</div>
+
+
 			</div>
-			<!-- CONTENIDO -->
 		</div>
-		<!-- END MAIN -->
-		<div class="clearfix"></div>
-		<footer>
-			<div class="container-fluid">
-				<p class="copyright">
-					&copy; 2018 <a href="#" target="_blank">InciDashboard</a>. All
-					Rights Reserved.
-				</p>
-			</div>
-		</footer>
+		<!-- CONTENIDO -->
+	</div>
+	<!-- END MAIN -->
+	<div class="clearfix"></div>
+	<footer>
+		<div class="container-fluid">
+			<p class="copyright">
+				&copy; 2018 <a href="#" target="_blank">InciDashboard</a>. All
+				Rights Reserved.
+			</p>
+		</div>
+	</footer>
 	</div>
 	<!-- END CONTENEDOR -->
 
@@ -82,8 +130,8 @@
 	<script
 		src="/assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
 	<script src="/assets/vendor/chartist/js/chartist.min.js"></script>
-	<script src="/assets/scripts/klorofil-common.js"></script>
-	<script src="/js/incidenceList.js"></script>
+	<script src="/assets/scripts/klorofil-common.js"></script>	
+	<script src="/js/info.js"></script>
 </body>
 
 </html>

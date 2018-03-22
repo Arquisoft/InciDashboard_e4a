@@ -7,7 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.uniovi.InciDashboard_e4a.entities.Incidence;
+import com.uniovi.InciDashboard_e4a.entities.State;
 import com.uniovi.InciDashboard_e4a.repositories.IncidencesRepository;
+
+import utils.StateChecker;
 
 @Service
 public class IncidencesService {
@@ -28,5 +31,10 @@ public class IncidencesService {
 
 	public Optional<Incidence> getIncidence(Long id) {
 		return incidencesRepository.findById(id);
+	}
+
+	public void changeStatus(Long id, Long status) {		
+		incidencesRepository.updateStatus(id, StateChecker.getState(status)); 
+		
 	}
 }

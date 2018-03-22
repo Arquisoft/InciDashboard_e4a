@@ -51,4 +51,20 @@ public class IncidencesController {
 		
 		return "/incidences/info";
 	}
+	
+	@RequestMapping(value = "/incidences/{id}/{status}", method = RequestMethod.GET)
+	public String statusChange(Model model, @PathVariable Long id, @PathVariable Long status) {
+		
+		Incidence incidencia = incidencesService.getIncidence(id).get();
+		Operator operator = operatorService.getActiveOperator();
+		List<Notification> nots = operator.getNotifications().stream().collect(Collectors.toList());
+		
+		model.addAttribute("nots", nots);
+		model.addAttribute("operator", operator);
+		model.addAttribute("incidence", incidencia);
+		
+		incidencesService.changeStatus(id, status);
+		
+		return "redirect:/incidences/list";
+	}
 }
