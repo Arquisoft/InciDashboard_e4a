@@ -22,7 +22,7 @@ El objetivo de este proyecto es actuar como modulo de Dashboard para un sistema 
 
 ### Crear proyecto en eclipse
 
-1. Clonar el proyecto mediante Git en una carpeta local [Loader_e4a](https://github.com/Arquisoft/Loader_e4a.git).
+1. Clonar el proyecto mediante Git en una carpeta local [InciDashboard_e4a](https://github.com/Arquisoft/InciDashboard_e4a.git).
 2. Importar el proyecto clonado a Eclipse.
 3. Actualizar dependencias con Maven.
 
