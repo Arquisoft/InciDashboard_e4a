@@ -2,11 +2,9 @@ package com.uniovi.InciDashboard_e4a.steps;
 
 import static org.junit.Assert.assertTrue;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.IntegrationTest;
-import org.springframework.boot.test.SpringApplicationContextLoader;
+import org.springframework.boot.test.context.SpringBootContextLoader;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.web.WebAppConfiguration;
 
@@ -21,9 +19,9 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
-@ContextConfiguration(classes = InciDashboardE4aApplication.class, loader = SpringApplicationContextLoader.class)
-@IntegrationTest
+@ContextConfiguration(classes = InciDashboardE4aApplication.class, loader = SpringBootContextLoader.class)
 @WebAppConfiguration
+@ActiveProfiles("INTEGRATION_TEST")
 public class ChangeIncidenceState {
 
 	@Autowired
