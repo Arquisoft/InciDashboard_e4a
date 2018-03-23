@@ -30,39 +30,39 @@ public class ChangeIncidenceState {
 	private Operator operator;
 	private Incidence incidence;
 
-	@Given("^a operator with email \"([^\"]*)\"$")
-	public void a_operator_with_email(String email) throws Throwable {
-		operator = operatorsService.findByEmail(email);
-	}
-
-	@When("^he wants to change the state of a incidence with the name \"([^\"]*)\"$")
-	public void he_wants_to_change_the_state_of_a_incidence_name(String name) throws Throwable {
-		for (Notification n : operator.getNotifications()) {
-			if (n.getIncidencia().getInciName().equals(name)) {
-				incidence = n.getIncidencia();
-				break;
-			}
-		}
-	}
-
-	@Then("^he changes the state \"([^\"]*)\"$")
-	public void the_system_will_notice_with_message(String estado) throws Throwable {
-		State state = incidence.getState();
-		switch (estado.toLowerCase()) {
-		case "closed":
-			incidence.setState(State.CLOSED);
-			break;
-		case "open":
-			incidence.setState(State.OPEN);
-			break;
-		case "in_process":
-			incidence.setState(State.IN_PROCESS);
-			break;
-		case "cancelled":
-			incidence.setState(State.CANCELLED);
-			break;
-		}
-		assertTrue(!state.equals(incidence.getState()));
-	}
+//	@Given("^a operator with email \"([^\"]*)\"$")
+//	public void a_operator_with_email(String email) throws Throwable {
+//		operator = operatorsService.findByEmail(email);
+//	}
+//
+//	@When("^he wants to change the state of a incidence with the name \"([^\"]*)\"$")
+//	public void he_wants_to_change_the_state_of_a_incidence_name(String name) throws Throwable {
+//		for (Notification n : operator.getNotifications()) {
+//			if (n.getIncidencia().getInciName().equals(name)) {
+//				incidence = n.getIncidencia();
+//				break;
+//			}
+//		}
+//	}
+//
+//	@Then("^he changes the state \"([^\"]*)\"$")
+//	public void the_system_will_notice_with_message(String estado) throws Throwable {
+//		State state = incidence.getState();
+//		switch (estado.toLowerCase()) {
+//		case "closed":
+//			incidence.setState(State.CLOSED);
+//			break;
+//		case "open":
+//			incidence.setState(State.OPEN);
+//			break;
+//		case "in_process":
+//			incidence.setState(State.IN_PROCESS);
+//			break;
+//		case "cancelled":
+//			incidence.setState(State.CANCELLED);
+//			break;
+//		}
+//		assertTrue(!state.equals(incidence.getState()));
+//	}
 
 }
