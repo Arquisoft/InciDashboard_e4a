@@ -28,7 +28,7 @@ El objetivo de este proyecto es actuar como modulo de Dashboard para un sistema 
 
 ### Ejecucion
 
-1. Arrancar HSQLDB
+1. Arrancar [HSQLDB](https://sourceforge.net/projects/hsqldb/files/hsqldb/hsqldb_2_4/hsqldb-2.4.0.zip/download)
    * Para ello, acceder a la carpeta data/hsqldb/bin y lanzar el runServer.bat (o runServer.sh en caso de Linux/Mac).
 2. Tener Apache Kafka. 
    * Instrucciones de instalación y despliegue en https://kafka.apache.org/quickstart.
