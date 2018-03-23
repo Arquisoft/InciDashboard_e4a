@@ -23,7 +23,6 @@ import cucumber.api.java.en.When;
 @WebAppConfiguration
 @ActiveProfiles("INTEGRATION_TEST")
 public class ChangeIncidenceState {
-
 	@Autowired
 	OperatorServices operatorsService;
 
