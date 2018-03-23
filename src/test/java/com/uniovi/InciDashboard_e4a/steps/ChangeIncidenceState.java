@@ -30,7 +30,7 @@ public class ChangeIncidenceState {
 	private Operator operator;
 	private Incidence incidence;
 
-	@Given("^a operator with email \"([^\"]*)\"$")
+	@Given("^a operator with the email \"([^\"]*)\"$")
 	public void a_operator_with_email(String email) throws Throwable {
 		operator = operatorsService.findByEmail(email);
 	}
