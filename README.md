@@ -42,7 +42,7 @@ El objetivo de este proyecto es actuar como modulo de Dashboard para un sistema 
 ``mvn spring-boot:run``
 5. Para lanzar incidencias: En windows: bin\windows\kafka-console-producer.bat --broker-list localhost:9092 --topic incidencia
 
-``
+```json
 { "agent":{ 
 		"username": "xxxxx",
 		"password": "xxxxx",
@@ -60,7 +60,7 @@ El objetivo de este proyecto es actuar como modulo de Dashboard para un sistema 
 		"propiedad2": "xxxx"
 	}
 }
-``
+```
 
 ### Usuarios para acceso
 
@@ -69,3 +69,11 @@ El objetivo de este proyecto es actuar como modulo de Dashboard para un sistema 
 * User: pasadores@gmail.com pass: 123456
 * User: mirza@gmail.com pass: 123456
 * User: ivan@gmail.com pass: 123456
+
+
+### Pruebas de carga
+
+Para la realización de las pruebas de carga se requiere el uso de [Gatling](https://gatling.io/). 
+```shell
+gatling.sh -s testGatling.scala
+```
