@@ -65,3 +65,7 @@ El objetivo de este proyecto es actuar como modulo de Dashboard para un sistema 
 ### Usuarios para acceso
 
 * User: hugo@gmail.com pass: 123456
+* User: antonio@gmail.com pass: 123456
+* User: pasadores@gmail.com pass: 123456
+* User: mirza@gmail.com pass: 123456
+* User: ivan@gmail.com pass: 123456
