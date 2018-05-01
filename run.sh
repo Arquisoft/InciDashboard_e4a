@@ -1,2 +1,2 @@
-﻿cd ../project/target
+﻿cd ./project/target
 java -jar inciDashboard.jar
