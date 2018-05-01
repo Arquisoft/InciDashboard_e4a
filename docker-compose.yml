@@ -20,8 +20,6 @@ services:
       - "9001:9001"
     environment:
       HSQLDB_DATABASE_NAME: hsqldb
-      HSQLDB_DATABASE_ALIAS:
-      HSQLDB_DATABASE_HOST: localhost
       HSQLDB_USER: SA
       HSQLDB_PASSWORD: SA
   app:
