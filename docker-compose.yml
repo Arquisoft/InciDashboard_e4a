@@ -22,7 +22,7 @@ services:
       HSQLDB_DATABASE_NAME: hsqldb
       HSQLDB_DATABASE_ALIAS:
       HSQLDB_DATABASE_HOST: localhost
-      HSQLDB_USER: sa
+      HSQLDB_USER: SA
       HSQLDB_PASSWORD:
   app:
     build: 
