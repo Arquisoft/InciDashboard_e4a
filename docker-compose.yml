@@ -19,14 +19,11 @@ services:
     ports:
       - "9001:9001"
     environment:
-      HSQLDB_TRACE: true
-      HSQLDB_SILENT: false
-      HSQLDB_REMOTE: true
       HSQLDB_DATABASE_NAME: hsqldb
       HSQLDB_DATABASE_ALIAS:
       HSQLDB_DATABASE_HOST: localhost
       HSQLDB_USER: sa
-       HSQLDB_PASSWORD:
+      HSQLDB_PASSWORD:
   app:
     build: 
       context: .
