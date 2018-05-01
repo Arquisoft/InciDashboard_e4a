@@ -6,7 +6,7 @@
 	<groupId>com.uniovi</groupId>
 
 	<artifactId>InciDashboard</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<packaging>jar</packaging>
 
 	<name>InciDashboard</name>
@@ -123,7 +123,6 @@
 
 
 	<build>
-		<finalName>inciDashboard</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
