@@ -22,4 +22,3 @@ services:
     links:
       - kafka
       - zookeeper
-      - hsqldb
