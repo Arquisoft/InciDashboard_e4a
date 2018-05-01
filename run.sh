@@ -1,2 +1,2 @@
 ﻿cd ../project/target
-java -jar inciDashboard-0.0.1.jar
+java -jar InciDashboard-0.0.1.jar
