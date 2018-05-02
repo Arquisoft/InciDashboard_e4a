@@ -14,6 +14,8 @@ after_success:
 addons:
   firefox: "46.0"
 before_install:
+- wget http://downloads.sourceforge.net/project/hsqldb/hsqldb/hsqldb_2_3/hsqldb-2.3.0.zip
+- unzip hsqldb-2.3.0.zip
 - wget http://apache.rediris.es/kafka/1.0.1/kafka_2.11-1.0.1.tgz -O kafka.tgz
 - mkdir -p kafka && tar xzf kafka.tgz -C kafka --strip-components 1
 - nohup bash -c "cd kafka && bin/zookeeper-server-start.sh config/zookeeper.properties &"
@@ -24,10 +26,7 @@ before_script:
 - "sh -e /etc/init.d/xvfb start"
 - sleep 3 # give xvfb some time to start
 script: 
-- nohup bash -c "cd data/hsqldb/bin && ./runServer.sh &"
+- nohup bash -c "cd hsqldb-2.3.0/hsqldb/bin && java -cp ../lib/hsqldb.jar org.hsqldb.server.Server &"
 - "mvn test"
 
 script: "mvn cobertura:cobertura"
-
-after_success:
-  - bash <(curl -s https://codecov.io/bash)
