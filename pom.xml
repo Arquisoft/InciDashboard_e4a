@@ -86,11 +86,11 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.hsqldb</groupId>
-			<artifactId>hsqldb</artifactId>
-			<version>2.4.0</version>
-			<scope>runtime</scope>
-		</dependency>
+   <groupId>org.hsqldb</groupId>
+   <artifactId>hsqldb</artifactId>
+   <version>2.3.0</version>
+   <scope>test</scope>
+</dependency>
 
 		<dependency>
 			<groupId>info.cukes</groupId>
