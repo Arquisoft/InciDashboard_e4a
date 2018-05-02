@@ -22,6 +22,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 import com.uniovi.InciDashboard_e4a.entities.Agent;
 import com.uniovi.InciDashboard_e4a.entities.Incidence;
+import com.uniovi.InciDashboard_e4a.entities.LatLong;
 import com.uniovi.InciDashboard_e4a.entities.Operator;
 import com.uniovi.InciDashboard_e4a.entities.State;
 
@@ -54,24 +55,24 @@ public class InciDashboardE4aApplicationTests {
 	@Test
 	public void testGetIncidencesByState() {
 		Agent a = new Agent();
-		
-		Incidence i1 = new Incidence();
+
+		Incidence i1 = new Incidence("i1", new LatLong());
 		i1.setState(State.OPEN);
 		a.addIncidence(i1);
-		
-		Incidence i2 = new Incidence();
+
+		Incidence i2 = new Incidence("i2", new LatLong());
 		i2.setState(State.IN_PROCESS);
 		a.addIncidence(i2);
-		
-		Incidence i3 = new Incidence();
+
+		Incidence i3 = new Incidence("i3", new LatLong());
 		i3.setState(State.OPEN);
 		a.addIncidence(i3);
-		
+
 		List<Incidence> list = a.getIncByState(State.OPEN);
 		assertEquals(list.size(), 2);
 		assertEquals(list.get(0), i1);
 		assertEquals(list.get(1), i3);
-		
+
 		list = a.getIncByState(State.CANCELLED);
 		assertEquals(list.size(), 0);
 	}
