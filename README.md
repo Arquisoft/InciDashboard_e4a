@@ -3,6 +3,7 @@
 [![Build Status](https://travis-ci.org/Arquisoft/InciDashboard_e4a.svg?branch=master)](https://travis-ci.org/Arquisoft/InciDashboard_e4a)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/f2f0d0b009384c8aba7deacb39b7b541)](https://www.codacy.com/app/Llambi/InciDashboard_e4a?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Arquisoft/InciDashboard_e4a&amp;utm_campaign=Badge_Grade)
 [![codecov](https://codecov.io/gh/Arquisoft/InciDashboard_e4a/branch/master/graph/badge.svg)](https://codecov.io/gh/Arquisoft/InciDashboard_e4a)
+[![Codefresh build status]( https://g.codefresh.io/api/badges/build?repoOwner=Arquisoft&repoName=InciDashboard_e4a&branch=Docker_Antonio&pipelineName=InciDashboard_e4a&accountName=antonioalfa22&type=cf-1)]( https://g.codefresh.io/repositories/Arquisoft/InciDashboard_e4a/builds?filter=trigger:build;branch:Docker_Antonio;service:5ae8830298ef440001d54881~InciDashboard_e4a)
 
 *Skeleton of InciDashboard_e4a module*
 
