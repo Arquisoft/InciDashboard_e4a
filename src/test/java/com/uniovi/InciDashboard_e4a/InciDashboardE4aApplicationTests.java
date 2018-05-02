@@ -99,14 +99,17 @@ public class InciDashboardE4aApplicationTests {
 		
 		Incidence i1 = new Incidence("i1", new LatLong());
 		Notification n1 = new Notification(1l,"n1",o);
+		n1.setIncidencia(i1);
 		i1.setState(State.OPEN);
 
 		Incidence i2 = new Incidence("i2", new LatLong());
 		Notification n2 = new Notification(2l,"n2",o);
+		n2.setIncidencia(i2);
 		i2.setState(State.IN_PROCESS);
 
 		Incidence i3 = new Incidence("i3", new LatLong());
 		Notification n3 = new Notification(3l,"n3",o);
+		n3.setIncidencia(i3);
 		i3.setState(State.OPEN);
 		
 		Set<Notification> set = new HashSet<Notification>();
