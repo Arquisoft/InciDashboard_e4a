@@ -2,6 +2,7 @@ package com.uniovi.InciDashboard_e4a;
 
 import static org.hamcrest.Matchers.containsString;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -140,7 +141,7 @@ public class InciDashboardE4aApplicationTests {
 	}
 	
 	@Test
-	public void testIncidenceTags() {
+	public void testIncidences() {
 		Incidence i = new Incidence();
 		
 		Set<String> tags = new HashSet<String>();
@@ -151,6 +152,15 @@ public class InciDashboardE4aApplicationTests {
 		i.setTags(tags);
 		
 		assertEquals("tag1,tag2,tag3", i.tagList());
+		
+		i.setState(State.OPEN);
+		assertTrue(i.isOpen());
+		i.setState(State.IN_PROCESS);
+		assertTrue(i.isInProg());
+		i.setState(State.CLOSED);
+		assertTrue(i.isClosed());
+		i.setState(State.CANCELLED);
+		assertTrue(i.isCancelled());
 	}
 
 }
