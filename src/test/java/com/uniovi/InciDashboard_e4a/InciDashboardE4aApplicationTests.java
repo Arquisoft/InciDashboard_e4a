@@ -6,7 +6,9 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -23,6 +25,7 @@ import org.springframework.web.context.WebApplicationContext;
 import com.uniovi.InciDashboard_e4a.entities.Agent;
 import com.uniovi.InciDashboard_e4a.entities.Incidence;
 import com.uniovi.InciDashboard_e4a.entities.LatLong;
+import com.uniovi.InciDashboard_e4a.entities.Notification;
 import com.uniovi.InciDashboard_e4a.entities.Operator;
 import com.uniovi.InciDashboard_e4a.entities.State;
 
@@ -53,7 +56,7 @@ public class InciDashboardE4aApplicationTests {
 	}
 
 	@Test
-	public void testGetIncidencesByState() {
+	public void testGetAgentIncidences() {
 		Agent a = new Agent();
 
 		Incidence i1 = new Incidence("i1", new LatLong());
@@ -73,8 +76,78 @@ public class InciDashboardE4aApplicationTests {
 		assertEquals(list.get(0), i1);
 		assertEquals(list.get(1), i3);
 
+		List<Incidence> list2 = a.getIncOPEN();
+		assertEquals(list.size(), list2.size());
+
 		list = a.getIncByState(State.CANCELLED);
 		assertEquals(list.size(), 0);
+
+		list2 = a.getIncCANCEL();
+		assertEquals(list.size(), list2.size());
+
+		list = a.getIncByState(State.IN_PROCESS);
+		assertEquals(list.size(), 1);
+
+		list2 = a.getIncProg();
+		assertEquals(list.size(), list2.size());
+
+	}
+	
+	@Test
+	public void testGetOperatorIncidences() {
+		Operator o = new Operator();
+		
+		Incidence i1 = new Incidence("i1", new LatLong());
+		Notification n1 = new Notification(1l,"n1",o);
+		i1.setState(State.OPEN);
+
+		Incidence i2 = new Incidence("i2", new LatLong());
+		Notification n2 = new Notification(2l,"n2",o);
+		i2.setState(State.IN_PROCESS);
+
+		Incidence i3 = new Incidence("i3", new LatLong());
+		Notification n3 = new Notification(3l,"n3",o);
+		i3.setState(State.OPEN);
+		
+		Set<Notification> set = new HashSet<Notification>();
+		set.add(n1);
+		set.add(n2);
+		set.add(n3);
+		
+		o.setNotifications(set);
+
+		List<Incidence> list = o.getIncByState(State.OPEN);
+		assertEquals(list.size(), 2);
+
+		List<Incidence> list2 = o.getIncOPEN();
+		assertEquals(list.size(), list2.size());
+
+		list = o.getIncByState(State.CANCELLED);
+		assertEquals(list.size(), 0);
+
+		list2 = o.getIncCANCEL();
+		assertEquals(list.size(), list2.size());
+
+		list = o.getIncByState(State.IN_PROCESS);
+		assertEquals(list.size(), 1);
+
+		list2 = o.getIncProg();
+		assertEquals(list.size(), list2.size());
+
+	}
+	
+	@Test
+	public void testIncidenceTags() {
+		Incidence i = new Incidence();
+		
+		Set<String> tags = new HashSet<String>();
+		tags.add("tag1");
+		tags.add("tag2");
+		tags.add("tag3");
+		
+		i.setTags(tags);
+		
+		assertEquals("tag1,tag2,tag3", i.tagList());
 	}
 
 }
