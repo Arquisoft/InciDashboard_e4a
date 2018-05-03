@@ -7,6 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+
 @Entity
 public class Notification {
 
@@ -24,9 +25,17 @@ public class Notification {
 
 	/**
 	 * Default constructor
+	 * @param operator2 
+	 * @param incidence 
+	 * @param descripcion 
+	 * @param id2 
 	 */
-	public Notification() {
-
+	public Notification(String id, String descripcion, Incidence incidencia, Operator operator2) {
+		super();
+		this.id = Long.valueOf(id);
+		this.description = descripcion;
+		this.incidencia = incidencia;
+		this.operator = operator2;
 	}
 
 	public Notification(Long id, String description, Operator operator) {
@@ -35,7 +44,7 @@ public class Notification {
 		this.description = description;
 		this.operator = operator;
 	}
-	
+	public Notification() {}
 	public Notification(String description, Operator operator,Incidence i) {
 		super();
 		this.description = description;
@@ -84,6 +93,9 @@ public class Notification {
 
 	public Incidence getIncidencia() {
 		return incidencia;
+	}
+	public Long getId() {
+		return id; 
 	}
 
 	public void setIncidencia(Incidence incidencia) {

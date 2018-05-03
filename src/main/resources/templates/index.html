@@ -115,7 +115,7 @@
 										<tr th:each="noti : ${nots}">
 											<td><a th:href="@{/incidences/{path}(path= ${noti.incidencia.id})}" th:text="${noti.incidencia.inciName}">763648</a></td>
 											<td th:text="${noti.description}">Steve</td>
-											<td th:text="${noti.incidencia.agent.username}">$122</td>
+											<td th:text="${noti.incidencia.agent}">$122</td>
 											<td th:text="${noti.tagList()}">Oct 21, 2016</td>
 											<td th:if="${noti.incidencia.isOpen()}"><span class="label label-success">OPEN</span></td>
 											<td th:if="${noti.incidencia.isInProg()}"><span class="label label-info">In Process</span></td>

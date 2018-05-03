@@ -15,12 +15,9 @@ public class Serializer extends JsonSerializer<Incidence> {
 		
 		generator.writeStartObject();
 		
-		// agent info
-		generator.writeObjectFieldStart("agent");
-		generator.writeStringField("username", incidence.getAgent().getUsername());
-		generator.writeStringField("password", incidence.getAgent().getPassword());
-		generator.writeStringField("kind", incidence.getAgent().getKind());
-		generator.writeEndObject();
+		
+		generator.writeStringField("agent", incidence.getAgent());		
+		
 		
 		generator.writeStringField("inciName", incidence.getInciName());
 		
