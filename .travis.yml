@@ -18,7 +18,7 @@ before_install:
 - nohup bash -c "cd kafka && bin/kafka-server-start.sh config/server.properties &"
 - sleep 10
 - bash <(curl -s https://codecov.io/bash)
-- nohup bash -c "cd hsqldb-2.3.0/hsqldb/bin && java -cp ../lib/hsqldb.jar org.hsqldb.server.Server &"
+- bash -c "cd hsqldb-2.3.0/hsqldb/bin && java -cp ../lib/hsqldb.jar org.hsqldb.server.Server &"
 - sleep 10
 install: true
 before_script:
