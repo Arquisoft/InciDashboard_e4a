@@ -7,6 +7,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -93,31 +94,31 @@ public class InciDashboardE4aApplicationTests {
 		assertEquals(list.size(), list2.size());
 
 	}
-	
+
 	@Test
 	public void testGetOperatorIncidences() {
 		Operator o = new Operator();
-		
+
 		Incidence i1 = new Incidence("i1", new LatLong());
-		Notification n1 = new Notification(1l,"n1",o);
+		Notification n1 = new Notification(1l, "n1", o);
 		n1.setIncidencia(i1);
 		i1.setState(State.OPEN);
 
 		Incidence i2 = new Incidence("i2", new LatLong());
-		Notification n2 = new Notification(2l,"n2",o);
+		Notification n2 = new Notification(2l, "n2", o);
 		n2.setIncidencia(i2);
 		i2.setState(State.IN_PROCESS);
 
 		Incidence i3 = new Incidence("i3", new LatLong());
-		Notification n3 = new Notification(3l,"n3",o);
+		Notification n3 = new Notification(3l, "n3", o);
 		n3.setIncidencia(i3);
 		i3.setState(State.OPEN);
-		
+
 		Set<Notification> set = new HashSet<Notification>();
 		set.add(n1);
 		set.add(n2);
 		set.add(n3);
-		
+
 		o.setNotifications(set);
 
 		List<Incidence> list = o.getIncByState(State.OPEN);
@@ -139,20 +140,20 @@ public class InciDashboardE4aApplicationTests {
 		assertEquals(list.size(), list2.size());
 
 	}
-	
+
 	@Test
 	public void testIncidences() {
 		Incidence i = new Incidence();
-		
+
 		Set<String> tags = new HashSet<String>();
 		tags.add("tag1");
 		tags.add("tag2");
 		tags.add("tag3");
-		
+
 		i.setTags(tags);
-		
+
 		assertEquals("tag1,tag2,tag3", i.tagList());
-		
+
 		i.setState(State.OPEN);
 		assertTrue(i.isOpen());
 		i.setState(State.IN_PROCESS);
@@ -161,6 +162,67 @@ public class InciDashboardE4aApplicationTests {
 		assertTrue(i.isClosed());
 		i.setState(State.CANCELLED);
 		assertTrue(i.isCancelled());
+
+		i.setInciName("i1");
+		assertEquals(i.getInciName(), "i1");
+
+		LatLong l1 = new LatLong();
+		i.setLocation(l1);
+		assertEquals(i.getLocation(), l1);
+
+		Agent a = new Agent();
+		i.setAgent(a);
+		assertEquals(i.getAgent(), a);
+
+		Notification n1 = new Notification();
+		i.setNotification(n1);
+		assertEquals(i.getNotification(), n1);
+
+		List<String> list = new ArrayList<String>();
+		list.add("info1");
+		list.add("info2");
+		i.setMoreInfo(list);
+		assertEquals(i.getMoreInfo(), list);
+	}
+
+	@Test
+	public void testOperators() {
+		Operator o = new Operator();
+
+		o.setEmail("email");
+		assertEquals(o.getEmail(), "email");
+
+		o.setIsAdmin(0);
+		assertEquals(o.getIsAdmin(), 0);
+
+		o.setOperatorname("name");
+		assertEquals(o.getOperatorname(), "name");
+
+		o.setPassword("passwd");
+		assertEquals(o.getPassword(), "passwd");
+
+		o.setRole("role");
+		assertEquals(o.getRole(), "role");
+	}
+
+	@Test
+	public void testAgents() {
+		Agent a = new Agent();
+		
+		a.setId(1l);
+		assertEquals(a.getId(), 1l, 0.1);
+		
+		a.setKind("kind");
+		assertEquals(a.getKind(), "kind");
+		
+		a.setPassword("passwd");
+		assertEquals(a.getPassword(), "passwd");
+		
+		a.setRole("role");
+		assertEquals(a.getRole(), "role");
+		
+		a.setUsername("user");
+		assertEquals(a.getUsername(), "user");
 	}
 
 }
