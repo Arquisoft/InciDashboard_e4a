@@ -6,14 +6,6 @@ env:
   global:
   - ZOOKEEPER_PEERS=localhost:2181
   - KAFKA_PEERS=localhost:9092
-after_success:
-- bash <(curl -s https://codecov.io/bash)
-- nohup bash -c "cd kafka && bin/kafka-server-stop.sh config/server.properties &"
-- sleep 10
-- nohup bash -c "cd kafka && bin/zookeeper-server-stop.sh config/zookeeper.properties &"
-- sleep 10
-- nohup bash -c "cd hsqldb-2.3.0/hsqldb/bin && java -cp ../lib/hsqldb.jar org.hsqldb.server.Server &"
-- sleep 10
 addons:
   firefox: "46.0"
 before_install:
@@ -23,6 +15,13 @@ before_install:
 - mkdir -p kafka && tar xzf kafka.tgz -C kafka --strip-components 1
 - nohup bash -c "cd kafka && bin/zookeeper-server-start.sh config/zookeeper.properties &"
 - nohup bash -c "cd kafka && bin/kafka-server-start.sh config/server.properties &"
+- bash <(curl -s https://codecov.io/bash)
+- nohup bash -c "cd kafka && bin/kafka-server-stop.sh config/server.properties &"
+- sleep 10
+- nohup bash -c "cd kafka && bin/zookeeper-server-stop.sh config/zookeeper.properties &"
+- sleep 10
+- nohup bash -c "cd hsqldb-2.3.0/hsqldb/bin && java -cp ../lib/hsqldb.jar org.hsqldb.server.Server &"
+- sleep 10
 install: true
 before_script:
 - "export DISPLAY=:99.0"
