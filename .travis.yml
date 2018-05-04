@@ -11,6 +11,7 @@ after_success:
 - nohup bash -c "cd kafka && bin/kafka-server-stop.sh config/server.properties &"
 - sleep 10
 - nohup bash -c "cd kafka && bin/zookeeper-server-stop.sh config/zookeeper.properties &"
+- sleep 10
 - nohup bash -c "cd hsqldb-2.3.0/hsqldb/bin && java -cp ../lib/hsqldb.jar org.hsqldb.server.Server &"
 - sleep 10
 addons:
