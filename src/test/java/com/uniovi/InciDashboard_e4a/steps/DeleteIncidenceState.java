@@ -44,11 +44,12 @@ public class DeleteIncidenceState {
 	@When("^it deletes the incidence$")
 	public void it_deletes_the_incidence() throws Throwable {
 		incidencessService.deleteIncidenceByName(incidence.getInciName());
+		incidences = incidencessService.getAllIncidences();
 	}
 
 	@Then("^there are one less$")
 	public void there_are_one_less() throws Throwable {
-		assertTrue(size==incidences.size());
+		assertTrue(size==incidences.size()+1);
 	}
 
 }

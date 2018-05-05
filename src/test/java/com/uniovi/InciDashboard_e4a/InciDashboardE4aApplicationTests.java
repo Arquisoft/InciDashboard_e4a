@@ -224,5 +224,23 @@ public class InciDashboardE4aApplicationTests {
 		a.setUsername("user");
 		assertEquals(a.getUsername(), "user");
 	}
+	
+	@Test 
+	public void testLatLong() {
+		LatLong ll = new LatLong("10.1", "11.156");
+		
+		assertEquals(ll.getLatitude(), "10.1");
+		assertEquals(ll.getLongitude(), "11.156");
+		
+		ll.setLatitude("-10");
+		assertEquals(ll.getLatitude(), "-10");
+		
+		ll.setLongitude("-56.10");
+		assertEquals(ll.getLongitude(), "-56.10");
+	}
+	@Test (expected=IllegalArgumentException.class)
+	public void testLatLongNull() {
+		LatLong ll = new LatLong("10.1", null);
+	}
 
 }
