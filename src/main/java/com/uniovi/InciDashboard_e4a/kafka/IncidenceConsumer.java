@@ -51,7 +51,7 @@ public class IncidenceConsumer {
 	}
 	
 	
-	@KafkaListener(topics = "incidencia")
+	@KafkaListener(topics = "vcxbg6wt-incidencia")
 	public void listen(String data) {
 		System.out.println(data);
 		
