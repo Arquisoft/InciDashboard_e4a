@@ -16,6 +16,7 @@ public interface IncidencesRepository extends CrudRepository<Incidence, Long> {
 
 	public List<Incidence> findAll();
 
+	@Transactional
 	public void deleteByInciName(String inciName);
 	
 	public Optional<Incidence> findById(Long id);
