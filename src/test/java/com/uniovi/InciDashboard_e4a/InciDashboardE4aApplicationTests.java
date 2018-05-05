@@ -170,7 +170,7 @@ public class InciDashboardE4aApplicationTests {
 		i.setLocation(l1);
 		assertEquals(i.getLocation(), l1);
 
-		Agent a = new Agent();
+		String a = "123AP";
 		i.setAgent(a);
 		assertEquals(i.getAgent(), a);
 
