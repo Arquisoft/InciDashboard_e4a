@@ -2,6 +2,7 @@ package com.uniovi.InciDashboard_e4a.steps;
 
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,7 @@ public class OperatorsInformationSteps {
 	OperatorServices operatorsService;
 
 	private Operator operator;
-	private List<Incidence> incidences;
+	private List<Incidence> incidences = new ArrayList<Incidence>();
 
 	@Given("^a operator with email \"([^\"]*)\"$")
 	public void a_operator_with_email(String email) throws Throwable {
