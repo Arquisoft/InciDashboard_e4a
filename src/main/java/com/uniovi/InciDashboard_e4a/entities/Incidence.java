@@ -197,7 +197,7 @@ public class Incidence {
 		for (String s : tags) {
 			cadena +=s+",";
 		}
-		return cadena;
+		return cadena.length() > 0 ? cadena.substring(0,cadena.length()-1) : cadena;
 	}
 	
 	public boolean isOpen() {
