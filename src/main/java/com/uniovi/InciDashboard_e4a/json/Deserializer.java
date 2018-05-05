@@ -24,8 +24,7 @@ public class Deserializer extends JsonDeserializer<Incidence> {
 		JsonNode jsonNode = objectCodec.readTree(parser);
 
 		Incidence incident = new Incidence();
-		incident.setAgent(new Agent(jsonNode.get("agent").get("username").asText(),
-				jsonNode.get("agent").get("password").asText(), jsonNode.get("agent").get("kind").asText()));
+		incident.setAgent(jsonNode.get("agent").get("username").asText());
 		incident.setInciName(jsonNode.get("inciName").asText());
 		incident.setLocation(new LatLong(jsonNode.get("location").get("lat").asText(),
 				jsonNode.get("location").get("lon").asText()));

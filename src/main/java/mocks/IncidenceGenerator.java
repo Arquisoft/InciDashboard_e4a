@@ -47,10 +47,10 @@ public class IncidenceGenerator {
 
 		properties.put("priority", generator.nextInt(4));
 
-		if (incident.getAgent().getKind().equals("Sensor")) {
-			double temperature = generator.nextDouble() * 80 - 30;
-			properties.put("temperature", temperature);
-		}
+//		if (incident.getAgent().getKind().equals("Sensor")) {
+//			double temperature = generator.nextDouble() * 80 - 30;
+//			properties.put("temperature", temperature);
+//		}
 
 		incident.setProperties(properties);
 	}
@@ -61,12 +61,12 @@ public class IncidenceGenerator {
 		return new LatLong(lat.toString(), lon.toString());
 	}
 
-	private Agent pickRandomAgent() {
+	private String pickRandomAgent() {
 		if (this.agents.size() == 0) {
 			return null;
 		}
 		int agentIndex = this.generator.nextInt(this.agents.size());
-		return this.agents.get(agentIndex);
+		return Long.toString(this.agents.get(agentIndex).getId());
 	}
 
 	private String createRandomString(int length) {

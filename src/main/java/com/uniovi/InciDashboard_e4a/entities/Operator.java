@@ -54,6 +54,10 @@ public class Operator {
 		this.isAdmin = isAdmin;
 	}
 
+	public Operator(String email) {
+		this.email = email;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -157,5 +161,9 @@ public class Operator {
 
 	public List<Incidence> getIncCANCEL() {
 		return this.getIncByState(State.CANCELLED);
+	}
+
+	public Long getID() {
+		return id;
 	}
 }
