@@ -113,7 +113,7 @@
 									</thead>
 									<tbody>
 										<tr th:each="noti : ${nots}">
-											<td><a th:href="@{/incidences/{path}(path= ${noti.incidencia.id})}" th:text="${noti.incidencia.inciName}">763648</a></td>
+											<td><a th:id="${'inci' +noti.incidencia.id}"th:href="@{/incidences/{path}(path= ${noti.incidencia.id})}" th:text="${noti.incidencia.inciName}">763648</a></td>
 											<td th:text="${noti.description}">Steve</td>
 											<td th:text="${noti.incidencia.agent}">$122</td>
 											<td th:text="${noti.tagList()}">Oct 21, 2016</td>

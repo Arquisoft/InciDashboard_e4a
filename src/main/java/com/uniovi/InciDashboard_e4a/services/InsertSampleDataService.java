@@ -82,7 +82,8 @@ public class InsertSampleDataService {
 		incidencia10.addMoreInfo("El osito mola mogollón");
 
 		incidencia10.setState(State.OPEN);
-	
+		Incidence incidencia11 = new Incidence("Prueba11", new LatLong("12.459789,", "-6.070053"), "agente3"); 
+		
 		incidencesService.addIncidence(incidencia1);
 		incidencesService.addIncidence(incidencia2);
 		incidencesService.addIncidence(incidencia3);
@@ -93,6 +94,7 @@ public class InsertSampleDataService {
 		incidencesService.addIncidence(incidencia8);
 		incidencesService.addIncidence(incidencia9);
 		incidencesService.addIncidence(incidencia10);
+		incidencesService.addIncidence(incidencia11);
 		
 		Notification n1 = new Notification("La hemos cagao",op2,incidencia1);
 		Notification n2 = new Notification("Se ha roto",op2,incidencia2);

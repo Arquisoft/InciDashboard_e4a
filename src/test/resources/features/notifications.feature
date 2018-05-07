@@ -2,8 +2,8 @@ Feature: Dangerous values
 	If values of certain properties will be dangerous, the system will 
 	notice workers to take actions
 Scenario Outline: Dangerous values
-    Given a incidence <incidence>
-    Then the system will notice with message <message>
+    Given a incidence "<incidence>"
+    Then the system will notice with message "<message>"
     Examples:
       | incidence    | message  						 |
       | Prueba1    	 | La hemos cagao       			 |
