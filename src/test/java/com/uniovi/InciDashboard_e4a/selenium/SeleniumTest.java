@@ -11,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.uniovi.InciDashboard_e4a.InciDashboardE4aApplication;
+import com.uniovi.InciDashboard_e4a.selenium.pageobjects.PO_HomeView;
 import com.uniovi.InciDashboard_e4a.selenium.pageobjects.PO_LoginView;
 import com.uniovi.InciDashboard_e4a.selenium.pageobjects.PO_NavView;
 import com.uniovi.InciDashboard_e4a.selenium.pageobjects.PO_View;
@@ -44,15 +45,18 @@ public class SeleniumTest {
 		PO_View.checkElement(driver, "label", "Username");
 	}
 	
-//	@Test
-//	public void testCambiarEstado() {
-//		PO_LoginView.fillForm(driver, "maria@prueba.es", "12345678");
-//		driver.navigate().to("http://localhost:8090/incidences/6");
-//		WebElement boton = driver.findElement(By.id("warning"));
-//		boton.click();
-//		String status = driver.findElement(By.id("status6")).getText();
-//		assertEquals( "IN_PROCESS", status);
-//	}
+	@Test
+	public void testCambiarEstado() {
+		PO_LoginView.fillForm(driver, "ivan@gmail.com", "123456");
+		WebElement element = driver.findElement(By.id("inci6"));
+		element.click();
+//		element = driver.findElement(By.id("success"));
+//		element.click();
+		driver.navigate().to("http://localhost:8090/incidences/6/3");
+		PO_View.checkElement(driver, "h3", "Incidencias");
+		String status = driver.findElement(By.id("status6")).getText();
+		assertEquals("CLOSED", status);
+	}
 
   @After
   public void tearDown() throws Exception {
