@@ -32,7 +32,7 @@
 									<td th:text="${incidence.inciName}"></td>
 									<td th:text="${incidence.location}"></td>
 									<td th:text="${incidence.agent}"></td>
-									<td th:text="${incidence.state}"></td>
+									<td th:id="${'status' +incidence.id}" th:text="${incidence.state}"></td>
 								</tr>
 							</table>
 						</div>
