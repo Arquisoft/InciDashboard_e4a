@@ -24,14 +24,21 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.google.gson.JsonElement;
 import com.uniovi.InciDashboard_e4a.entities.Agent;
 import com.uniovi.InciDashboard_e4a.entities.Incidence;
 import com.uniovi.InciDashboard_e4a.entities.IncidencePOJO;
 import com.uniovi.InciDashboard_e4a.entities.LatLong;
 import com.uniovi.InciDashboard_e4a.entities.Notification;
+import com.uniovi.InciDashboard_e4a.entities.NotificationPOJO;
 import com.uniovi.InciDashboard_e4a.entities.Operator;
 import com.uniovi.InciDashboard_e4a.entities.State;
+import com.uniovi.InciDashboard_e4a.json.NotificationDeserializer;
+import com.uniovi.InciDashboard_e4a.json.NotificationSerializer;
+import com.uniovi.InciDashboard_e4a.json.Serializer;
 import com.uniovi.InciDashboard_e4a.services.IncidencesService;
+import com.uniovi.InciDashboard_e4a.services.NotificationsService;
 
 import utils.Incidence2Pojo;
 import utils.StateChecker;
@@ -48,6 +55,9 @@ public class InciDashboardE4aApplicationTests {
 	
 	@Autowired
 	private IncidencesService incidencesService;
+	
+	@Autowired
+	private NotificationsService notificationsService;
 	
 	private MockMvc mvc;
 
@@ -259,6 +269,31 @@ public class InciDashboardE4aApplicationTests {
 		assertEquals(StateChecker.getState((long) 3), State.CLOSED);
 		assertEquals(StateChecker.getState((long) 4), State.CANCELLED);
 		assertEquals(StateChecker.getState((long) 5), State.OPEN);
+	}
+	
+	@Test
+	public void incidence2POJO() {
+		Incidence i = incidencesService.getAllIncidences().get(0);
+		IncidencePOJO ip = Incidence2Pojo.convert(i);
+		assertEquals(i.getAgent(), ip.agent);
+		assertEquals(i.getInciName(), ip.inciName);
+		assertEquals(i.getId().toString(), ip.id);
+		assertEquals(i.getLocation().toString(), ip.location);
+		assertEquals(i.getState().toString(), ip.state);
+	}
+	
+	@Test 
+	public void notificationSerializeDeserialize() {
+		Notification n = new Notification((long)1, "hola", new Operator("ivan@gmail.com"));
+		n.setIncidencia(new Incidence("Prueba1", new LatLong("12.2015", "26.16581"), "robot1"));
+		NotificationSerializer ns = new NotificationSerializer();
+		JsonElement json = ns.serialize(n, null, null);
+		NotificationDeserializer nd = new NotificationDeserializer();
+		NotificationPOJO np = nd.deserialize(json, null, null);
+		assertEquals(np.descripcion, n.getDescription());
+		assertEquals(np.id, n.getId().toString());
+		assertEquals(np.incidencia, n.getIncidencia());
+		assertEquals(np.operator, n.getOperator());
 	}
 
 }
