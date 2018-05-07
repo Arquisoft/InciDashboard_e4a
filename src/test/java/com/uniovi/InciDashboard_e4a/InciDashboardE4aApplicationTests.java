@@ -26,10 +26,16 @@ import org.springframework.web.context.WebApplicationContext;
 
 import com.uniovi.InciDashboard_e4a.entities.Agent;
 import com.uniovi.InciDashboard_e4a.entities.Incidence;
+import com.uniovi.InciDashboard_e4a.entities.IncidencePOJO;
 import com.uniovi.InciDashboard_e4a.entities.LatLong;
 import com.uniovi.InciDashboard_e4a.entities.Notification;
 import com.uniovi.InciDashboard_e4a.entities.Operator;
 import com.uniovi.InciDashboard_e4a.entities.State;
+import com.uniovi.InciDashboard_e4a.services.IncidencesService;
+
+import utils.Incidence2Pojo;
+import utils.StateChecker;
+
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -39,7 +45,10 @@ public class InciDashboardE4aApplicationTests {
 
 	@Autowired
 	private WebApplicationContext context;
-
+	
+	@Autowired
+	private IncidencesService incidencesService;
+	
 	private MockMvc mvc;
 
 	@Before
@@ -241,6 +250,15 @@ public class InciDashboardE4aApplicationTests {
 	@Test (expected=IllegalArgumentException.class)
 	public void testLatLongNull() {
 		LatLong ll = new LatLong("10.1", null);
+		ll.setLatitude("10.256548");
+	}
+	@Test
+	public void testStateChecher() {
+		assertEquals(StateChecker.getState((long) 1), State.OPEN);
+		assertEquals(StateChecker.getState((long) 2), State.IN_PROCESS);
+		assertEquals(StateChecker.getState((long) 3), State.CLOSED);
+		assertEquals(StateChecker.getState((long) 4), State.CANCELLED);
+		assertEquals(StateChecker.getState((long) 5), State.OPEN);
 	}
 
 }
